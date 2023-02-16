@@ -1,1 +1,1 @@
-"# IntellijentDiscussionBoard" 
+# IntellijentDiscussionBoard
