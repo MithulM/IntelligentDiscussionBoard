@@ -1,24 +1,30 @@
-import { useState } from 'react'
+import HomePage from './HomePage.jsx'
+import DummyClass from './DummyClass.jsx'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
   return (
     <div className="App">
-      <div>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Router>
+        <div className="menu">
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/class1">Class 1</Link>
+            </li>
+            <li>
+              <Link to="/class2">Class 2</Link>
+            </li>
+          </ul>
+        </div>
+        <Routes className="main">
+          <Route path="/" element={<HomePage/>}/>
+          <Route path="/class1" element={<DummyClass/>}/>
+        </Routes>
+      </Router >
     </div>
   )
 }
