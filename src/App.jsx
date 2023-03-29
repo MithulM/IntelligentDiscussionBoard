@@ -3,6 +3,19 @@ import DummyClass from './DummyClass.jsx'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css'
 
+function FancyButton({ to, menuTab }) {
+  return (
+    <button className="learn-more">
+      <span className="circle">
+        <span className="icon arrow"></span>
+      </span>
+      <span className="button-text">
+        <Link to={to}>{menuTab}</Link>
+      </span>
+    </button>
+  )
+}
+
 function App() {
   return (
     <div className="App">
@@ -10,19 +23,19 @@ function App() {
         <div className="menu">
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <FancyButton to="/" menuTab="Home" />
             </li>
             <li>
-              <Link to="/class1">Class 1</Link>
+              <FancyButton to="/class1" menuTab="Class 1" />
             </li>
             <li>
-              <Link to="/class2">Class 2</Link>
+              <FancyButton to="/class2" menuTab="Class 2" />
             </li>
           </ul>
         </div>
         <Routes className="main">
-          <Route path="/" element={<HomePage/>}/>
-          <Route path="/class1" element={<DummyClass/>}/>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/class1" element={<DummyClass />} />
         </Routes>
       </Router >
     </div>
