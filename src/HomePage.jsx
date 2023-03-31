@@ -18,7 +18,8 @@ function HomePage() {
     let topics = ["Professor", "Your", "Recent", "Recommended"]
     for (let i = 0; i < topics.length; i++) {
         let postList = []
-        for (let j = 0; j < 5; j++) {
+        let numPosts = Math.floor(Math.random() * 3) + 8;
+        for (let j = 0; j < numPosts; j++) {
             postList.push({
                 id: j,
                 question: randCont(10, 20),
@@ -38,12 +39,17 @@ function HomePage() {
             {data.map((item) => (<div id={item.id} className="HomePageConvenience">
                 <div>
                     <h1>{item.topic} posts</h1>
-                    {item.posts.map((item2) => (<div id={item2.id} className="post">
-                        <h2>{item2.question}?</h2>
-                        <p>{item2.answer}</p>
-                    </div>))}
+                    <div className="posts">
+                        {
+                            item.posts.map((item2) => (
+                                <div id={item2.id} className="post">
+                                    <h2>{item2.question}?</h2>
+                                    <p>{item2.answer}</p>
+                                </div>))
+                        }
+                    </div>
                 </div>
-                </div>))}
+            </div>))}
         </div>
     );
 }

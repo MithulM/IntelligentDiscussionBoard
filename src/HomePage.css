@@ -2,11 +2,11 @@
     --gapY: 20px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: minmax(50%, 50%);
     grid-gap: var(--gapY);
     flex: 1;
     flex-grow: 1;
     padding: 10px;
-    overflow: auto;
 }
 
 .post {
@@ -26,7 +26,20 @@
 .HomePageConvenience {
     display: flex;
     flex-direction: column;
+    gap: 20px;
+    height: 100%;
     background-color: black;
+    overflow-y: scroll;
 }
 
-.HomePageConvenience:hover {}
+.HomePageConvenience h1 {
+    position: sticky;
+    top: 0;
+    background-color: #1d5f3c;
+    padding: 10px;
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+    z-index: 1;
+    text-align: center;
+}

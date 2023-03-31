@@ -33,7 +33,7 @@ function App() {
             </li>
           </ul>
         </div>
-        <Routes className="main">
+        <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/class1" element={<DummyClass />} />
         </Routes>
