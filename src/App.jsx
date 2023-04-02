@@ -1,5 +1,6 @@
 import HomePage from './HomePage.jsx'
 import DummyClass from './DummyClass.jsx'
+import CreatePost from './createPost.jsx'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css'
 
@@ -31,15 +32,19 @@ function App() {
             <li>
               <FancyButton to="/class2" menuTab="Class 2" />
             </li>
+            <li>
+              <FancyButton to="/createpost" menuTab="Create post" />
+            </li>
           </ul>
         </div>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/class1" element={<DummyClass />} />
+          <Route path="/createpost" element={<CreatePost />} />
         </Routes>
       </Router >
     </div>
   )
 }
 
-export default App
+export default App;
