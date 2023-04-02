@@ -1,6 +1,5 @@
 import React from 'react';
 import './DummyClass.css';
-import HomePage from './HomePage';
 
 function DummyClass() {
 
@@ -15,9 +14,9 @@ function DummyClass() {
     }
 
     let postList = []
-    let numPosts = Math.floor(Math.random() * 3) + 8;
+    let numPosts = Math.floor(Math.random() * 3) + 20;
     for (let i = 0; i < numPosts; i++) {
-        postList.push({                
+        postList.push({
             id: i,
             question: randCont(10, 20),
             answer: randCont(200, 400)
@@ -26,18 +25,18 @@ function DummyClass() {
 
     return (
         <React.Fragment>
-            <div className="HomePageConvenience">
-                <h1>
+            <div className="classPosts">
+                <h1 classname="classTitle">
                     CS 3377.001
                 </h1>
                 <div className="posts">
-                {
-                    postList.map((item) => (
-                        <div id={item.id} className="post">
-                            <h2>{item.question}?</h2>
-                            <p>{item.answer}</p>
-                        </div>))
-                }
+                    {
+                        postList.map((item) => (
+                            <div id={item.id} className="post">
+                                <h2>{item.question}?</h2>
+                                <p>{item.answer}</p>
+                            </div>))
+                    }
                 </div>
             </div>
         </React.Fragment>
