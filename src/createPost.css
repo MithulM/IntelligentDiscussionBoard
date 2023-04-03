@@ -1,53 +1,85 @@
-form {
-    /* Center the form on the page */
-    margin: 0 auto;
-    width: 400px;
-    /* Form outline */
-    padding: 5em;
-    border: 50px solid #ccc;
-    border-radius: 1em;
-  }
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  form li + li {
-    margin-top: 1em;
-  }
-  
-  label {
-    /* Uniform size & alignment */
-    display: inline-block;
-    width: 35px;
-    text-align: right;
-  }
-  input,
-  textarea {
-    /* To make sure that all text fields have the same font settings
-       By default, textareas have a monospace font */
-    font: 1em sans-serif;
-    /* Uniform text field size */
-    width: 400px;
-    box-sizing: border-box;
-    /* Match form field borders */
-    border: 1px solid #999;
-  }
-  input:focus,
-  textarea:focus {
-    /* Additional highlight for focused elements */
-    border-color: rgb(0, 0, 0);
-  }
-  textarea {
-    /* Align multiline text fields with their labels */
-    vertical-align: top;
-    /* Provide space to type some text */
-    height: 5em;
-  }
-  .button {
-    /* Align buttons with the text fields */
-    padding-left: 0px; /* same size as the label elements */
-  }
-  
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #695f5f;
+}
 
+.create-post-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 50px;
+}
 
+.create-post {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 50px;
+}
+
+.create-post__title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.create-post__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #bdaeae;
+  padding: 50px;
+  border-radius: 55px;
+  margin-right: 20px;
+}
+
+.create-post__label {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.create-post__input {
+  font-size: 1.2rem;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 20px;
+}
+
+.create-post__select {
+  font-size: 1.2rem;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 20px;
+}
+
+.similar-posts__title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  margin-right: 500px;
+}
+
+.similar-posts__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.similar-posts__item {
+  margin-bottom: 10px;
+}
+
+.similar-posts__link {
+  font-size: 1.2rem;
+  color: #0077c2;
+  text-decoration: none;
+}
+
+.similar-posts__link:hover {
+  text-decoration: underline;
+}
