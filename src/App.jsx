@@ -31,9 +31,6 @@ function App() {
           <li>
             <FancyButton to="/class2" menuTab="Class 2" />
           </li>
-          <li>
-            <FancyButton to="/createpost" menuTab="Create post" />
-          </li>
         </ul>
       </div>
       <Routes>
