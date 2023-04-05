@@ -1,35 +1,4 @@
-.post-editor {
-    margin: 0 20%
-}
-
-.post {
-    background-color: #154734;
-    padding: 10px;
-    border-radius: 20px;
-    box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, .8);
-    transform: translateY(0px);
-}
-
-.classPosts {
-    height: 100%;
-    background-color: black;
-    overflow-y: scroll;
-}
-
-.classPosts h1 {
-    position: sticky;
-    top: 0;
-    background-color: #1d5f3c;
-    padding: 10px;
-    margin: 0;
-    font-size: 24px;
-    font-weight: bold;
-    z-index: 1;
-    text-align: center;
-}
-
-.post:hover {
-    background-color: #1d5f3c;
-    box-shadow: 20px var(--gapY) 30px 2px rgba(0, 0, 0, .8);
-    transform: translateY(calc(var(--gapY) / -2));
+.classPage {
+    margin: 0% 20%;
+    flex: 1;
 }

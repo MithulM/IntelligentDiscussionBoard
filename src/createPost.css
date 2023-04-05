@@ -8,8 +8,10 @@ body {
 .create-post-container {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  margin-top: 50px;
+  align-items: center;
+  
+  width: 100%;
+  padding: 50px;
 }
 
 .create-post {
@@ -51,7 +53,7 @@ body {
 
 .create-post__select {
   font-size: 1.2rem;
-  padding: 10px;
+  padding: 10;
   border-radius: 5px;
   border: none;
   margin-bottom: 20px;

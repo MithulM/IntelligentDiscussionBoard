@@ -1,10 +1,13 @@
 import React from 'react';
 import './createPost.css';
+import { Link } from 'react-router-dom';
+import ClassPosts from './ClassPosts';
+import getRandPosts from './utils'
 
 function CreatePost() {
   return (
     <div className="create-post-container">
-      <div className="create-post"style={{ marginLeft: '40px' }}>
+      <div className="create-post">
         <h2 className="create-post__title">Create Post</h2>
         <form className="create-post__form" action="/createpost" method="post">
           <label className="create-post__label" htmlFor="post-title">
@@ -41,20 +44,14 @@ function CreatePost() {
             <option value="class2">Class 2</option>
           </select>
           <button className="create-post__button" type="submit">
-            Post
+            <Link to="/class1">
+              Post
+            </Link>
           </button>
         </form>
       </div>
       <div className="similar-posts">
-        <h2 className="similar-posts__title">Similar Posts</h2>
-        <textarea
-          className="similar-posts__input similar-posts__input--body"
-          id="similar-posts-body"
-          name="similar-posts-body"
-          placeholder="Enter text"
-          rows="41"
-          cols="100"
-        ></textarea>
+        <ClassPosts title="Similar Posts" postList={getRandPosts(10, 20)}/>
       </div>
     </div>
   );

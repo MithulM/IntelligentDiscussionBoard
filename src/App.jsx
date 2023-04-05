@@ -1,7 +1,7 @@
 import HomePage from './HomePage.jsx'
 import DummyClass from './DummyClass.jsx'
 import CreatePost from './createPost.jsx'
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import './App.css'
 
 function FancyButton({ to, menuTab }) {
@@ -20,29 +20,27 @@ function FancyButton({ to, menuTab }) {
 function App() {
   return (
     <div className="App">
-      <Router>
-        <div className="menu">
-          <ul>
-            <li>
-              <FancyButton to="/" menuTab="Home" />
-            </li>
-            <li>
-              <FancyButton to="/class1" menuTab="Class 1" />
-            </li>
-            <li>
-              <FancyButton to="/class2" menuTab="Class 2" />
-            </li>
-            <li>
-              <FancyButton to="/createpost" menuTab="Create post" />
-            </li>
-          </ul>
-        </div>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/class1" element={<DummyClass />} />
-          <Route path="/createpost" element={<CreatePost />} />
-        </Routes>
-      </Router >
+      <div className="menu">
+        <ul>
+          <li>
+            <FancyButton to="/" menuTab="Home" />
+          </li>
+          <li>
+            <FancyButton to="/class1" menuTab="Class 1" />
+          </li>
+          <li>
+            <FancyButton to="/class2" menuTab="Class 2" />
+          </li>
+          <li>
+            <FancyButton to="/createpost" menuTab="Create post" />
+          </li>
+        </ul>
+      </div>
+      <Routes>
+        <Route path="/" element={<HomePage className="page" />} />
+        <Route path="/class1" element={<DummyClass className="page" />} />
+        <Route path="/createpost" element={<CreatePost className="page" />} />
+      </Routes>
     </div>
   )
 }
