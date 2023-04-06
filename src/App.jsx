@@ -37,9 +37,9 @@ function App() {
         </ul>
       </div>
       <Routes>
-        <Route path="/" element={<HomePage className="page" />} />
-        <Route path="/class1" element={<DummyClass className="page" />} />
-        <Route path="/createpost" element={<CreatePost className="page" />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/class1" element={<DummyClass />} />
+        <Route path="/createpost" element={<CreatePost />} />
       </Routes>
     </div>
   )

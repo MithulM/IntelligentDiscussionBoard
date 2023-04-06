@@ -6,19 +6,16 @@ body {
 }
 
 .create-post-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
   width: 100%;
-  padding: 50px;
+  flex: 1;
 }
 
 .create-post {
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 50%;
+  float: left;
   margin-right: 50px;
 }
 
@@ -57,6 +54,11 @@ body {
   border-radius: 5px;
   border: none;
   margin-bottom: 20px;
+}
+
+.similar-post {
+  width: 50%;
+  float: right;
 }
 
 .similar-posts__title {
