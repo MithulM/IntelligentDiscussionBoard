@@ -13,8 +13,8 @@ export const getRandPosts = (min, max) => {
     let numPosts = Math.floor(Math.random() * (max - min + 1)) + min;
     for (let i = 0; i < numPosts; i++) {
         postList.push({
-            id: i,
-            question: randCont(10, 20),
+            post_id: i,
+            title: randCont(10, 20),
             answer: randCont(200, 400)
         })
     }

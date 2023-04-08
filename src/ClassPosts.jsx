@@ -1,7 +1,10 @@
 import React from 'react'
 import './ClassPosts.css'
+import { Link } from 'react-router-dom';
 
 function ClassPosts({ title, postList }) {
+
+
     return (
         <div className="classPosts">
             <h1 className="classTitle">
@@ -10,10 +13,10 @@ function ClassPosts({ title, postList }) {
             <div className="posts">
                 {
                     postList.map((item) => (
-                        <div key={item.id} className="post">
-                            <h2>{item.question}?</h2>
+                        <Link to={`${item.post_id}`} key={item.post_id} className="post">
+                            <h2>{item.title}</h2>
                             <p>{item.answer}</p>
-                        </div>))
+                        </Link>))
                 }
             </div>
         </div>

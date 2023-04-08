@@ -2,6 +2,7 @@ import HomePage from './HomePage.jsx'
 import DummyClass from './DummyClass.jsx'
 import CreatePost from './createPost.jsx'
 import { Routes, Route, Link } from 'react-router-dom';
+import SinglePostPage from './SinglePostPage.jsx';
 import './App.css'
 
 function FancyButton({ to, menuTab }) {
@@ -18,6 +19,21 @@ function FancyButton({ to, menuTab }) {
 }
 
 function App() {
+  const courseList = [
+    {
+      id: 1,
+      class: "CS 4485"
+    },
+    {
+      id: 2,
+      class: "CS 4332"
+    },
+    {
+      id: 3,
+      class: "CS 4375"
+    }
+  ];
+
   return (
     <div className="App">
       <div className="menu">
@@ -25,17 +41,24 @@ function App() {
           <li>
             <FancyButton to="/" menuTab="Home" />
           </li>
-          <li>
-            <FancyButton to="/class1" menuTab="Class 1" />
-          </li>
-          <li>
-            <FancyButton to="/class2" menuTab="Class 2" />
-          </li>
+          {courseList.map(courseName =>
+            <li key={courseName.id}>
+              <FancyButton to={"/" + courseName.class.toLowerCase().replace(/\s/g, '')} menuTab={courseName.class} />
+            </li>)
+          }
         </ul>
       </div>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/class1" element={<DummyClass />} />
+        {courseList.map(courseName =>
+          <Route key={courseName.id} path={"/" + courseName.class.toLowerCase().replace(/\s/g, '')}>
+            <Route>
+              <Route index element={<DummyClass courseName={courseName.class} />} />
+              <Route path=":postId" element={<SinglePostPage courseName={courseName.class} />} />
+            </Route>
+          </Route>
+        )
+        }
         <Route path="/createpost" element={<CreatePost />} />
       </Routes>
     </div>

@@ -3,23 +3,23 @@ import './createPost.css';
 import { Link } from 'react-router-dom';
 import ClassPosts from './ClassPosts';
 import getRandPosts from './utils';
-import { createPost } from './apicalls';
+import { create_post } from './apicalls.jsx';
+import api from './apicalls.jsx'
 
 function CreatePost() {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [courseId, setCourseId] = useState('');
-  const [userId, setUserId] = useState('');
+  const [title, setTitle] = useState("It works");
+  const [content, setContent] = useState("Class, Time, Exam");
+  const [courseId, setCourseId] = useState("2");
+  const [userId, setUserId] = useState("3");
 
-  function submitPost(event) {
+  async function submitPost(event) {
     event.preventDefault();
     console.log("User Id: " + userId);
     console.log("Course Id: " + courseId);
     console.log("Title: " + title)
     console.log("Content: " + content);
-    createPost(Number(userId), Number(courseId), title, content).then((response) => {
-      console.log(response);
-    });
+    const response = await create_post(Number(userId), Number(courseId), title, content);
+    console.log(response);
   }
 
   return (
@@ -36,7 +36,8 @@ function CreatePost() {
             placeholder="Title"
             rows="1"
             cols="50"
-            value={title}
+            defaultValue={userId}
+            required
             onChange={(e) => setTitle(e.target.value)}
           />
           <label className="create-post__label" htmlFor="post-body">
@@ -47,7 +48,8 @@ function CreatePost() {
             placeholder="Enter text"
             rows="15"
             cols="50"
-            value={content}
+            defaultValue={content}
+            required
             onChange={(e) => setContent(e.target.value)}
           />
           <label className="create-post__label" htmlFor="post-class">
@@ -57,7 +59,8 @@ function CreatePost() {
             className="create-post__select"
             id="post-class"
             name="post-class"
-            value={courseId}
+            defaultValue={courseId}
+            required
             onChange={(e) => setCourseId(e.target.value)}
           >
             <option value="">Select Class</option>
@@ -71,7 +74,8 @@ function CreatePost() {
             className="create-post__select"
             id="post-user"
             name="post-user"
-            value={userId}
+            defaultValue={userId}
+            required
             onChange={(e) => setUserId(e.target.value)}
           >
             <option value="">Select User</option>
