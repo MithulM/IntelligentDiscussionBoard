@@ -3,7 +3,7 @@ import axios from 'axios'
 const serverURL = "https://eflask-idb-be.herokuapp.com";
 
 export const create_post = async (user_id, course_id, title, content) => {
-    let response = await fetch(serverURL + 'create_post', {
+    let response = await fetch(serverURL + '/create_post', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
