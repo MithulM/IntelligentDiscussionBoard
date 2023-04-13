@@ -46,6 +46,7 @@ body {
   border-radius: 5px;
   border: none;
   margin-bottom: 20px;
+  resize: none;
 }
 
 .create-post__select {
@@ -59,31 +60,4 @@ body {
 .similar-post {
   width: 50%;
   float: right;
-}
-
-.similar-posts__title {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 20px;
-  margin-right: 500px;
-}
-
-.similar-posts__list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.similar-posts__item {
-  margin-bottom: 10px;
-}
-
-.similar-posts__link {
-  font-size: 1.2rem;
-  color: #0077c2;
-  text-decoration: none;
-}
-
-.similar-posts__link:hover {
-  text-decoration: underline;
 }

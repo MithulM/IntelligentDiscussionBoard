@@ -3,7 +3,7 @@ import './createPost.css';
 import { Link } from 'react-router-dom';
 import ClassPosts from './ClassPosts';
 import getRandPosts from './utils';
-import api from './apicalls.jsx'
+import { getAPI, postAPI } from './apicalls.jsx'
 
 function CreatePost() {
   const [title, setTitle] = useState("It works");
@@ -17,9 +17,11 @@ function CreatePost() {
     console.log("Course Id: " + courseId);
     console.log("Title: " + title)
     console.log("Content: " + content);
-    const response = await create_post(Number(userId), Number(courseId), title, content);
+    const response = await postAPI("create_post", {user_id: Number(userId), course_id: Number(courseId), title: title, content: content});
     console.log(response);
   }
+
+
 
   return (
     <div className="create-post-container">
@@ -33,17 +35,15 @@ function CreatePost() {
             className="create-post__input"
             type="text"
             placeholder="Title"
-            rows="1"
-            cols="50"
-            defaultValue={userId}
+            defaultValue={title}
             required
             onChange={(e) => setTitle(e.target.value)}
           />
           <label className="create-post__label" htmlFor="post-body">
-            Post Body
+            Post Content
           </label>
           <textarea
-            className="create-post__input create-post__input--body"
+            className="create-post__input"
             placeholder="Enter text"
             rows="15"
             cols="50"

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './HomePage.css'
 import Cookies from 'js-cookie';
 import ClassPosts from './ClassPosts';
-import api from './apicalls'
+import { getAPI } from './apicalls'
 
 function HomePage() {
 
@@ -44,87 +44,19 @@ function HomePage() {
     }
 
     useEffect(() => {
-
-        async function fetchPost() {
-            try {
-                const response = await api.get(`/get_user_posts/${userID}`);
-                console.log(response.data);
-                setUserPosts(response.data);
-            } catch (err) {
-                if (err.response) {
-                    console.log(err.response.data);
-                    console.log(err.response.status);
-                    console.log(err.response.headers);
-                } else {
-                    console.log(`Error: ${err.message}`);
-                }
-            }
-        }
-
-        fetchPost();
+        getAPI("get_user_posts", [userID], setUserPosts);
     }, []);
 
     useEffect(() => {
-
-        async function fetchPost() {
-            try {
-                const response = await api.get(`/get_recommended_posts`);
-                console.log(response.data);
-                setRecPosts(response.data);
-            } catch (err) {
-                if (err.response) {
-                    console.log(err.response.data);
-                    console.log(err.response.status);
-                    console.log(err.response.headers);
-                } else {
-                    console.log(`Error: ${err.message}`);
-                }
-            }
-        }
-
-        fetchPost();
+        getAPI("get_recommended_posts", [], setRecPosts);
     }, []);
 
     useEffect(() => {
-
-        async function fetchPost() {
-            try {
-                const response = await api.get(`/get_professor_posts/${profID}`);
-                console.log(response.data);
-                setProfPosts(response.data);
-            } catch (err) {
-                if (err.response) {
-                    console.log(err.response.data);
-                    console.log(err.response.status);
-                    console.log(err.response.headers);
-                } else {
-                    console.log(`Error: ${err.message}`);
-                }
-            }
-        }
-
-        fetchPost();
+        getAPI("get_professor_posts", [profID], setProfPosts);
     }, []);
 
     useEffect(() => {
-
-        async function fetchPost() {
-            try {
-                const response = await api.get(`/get_recent_posts`);
-                console.log(response.data);
-                setRecentPosts(response.data);
-            } catch (err) {
-                if (err.response) {
-                    console.log(err.response.data);
-                    console.log(err.response.status);
-                    console.log(err.response.headers);
-                } else {
-                    console.log(`Error: ${err.message}`);
-                }
-            }
-        }
-
-        fetchPost();
+        getAPI("get_recent_posts", [], setRecentPosts);
     }, []);
 
     return (
