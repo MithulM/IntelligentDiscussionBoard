@@ -35,33 +35,33 @@ function App() {
   ];
 
   return (
-    <div className="App">
-      <div className="menu">
-        <ul>
-          <li>
-            <FancyButton to="/" menuTab="Home" />
-          </li>
+      <div className="App">
+        <div className="menu">
+          <ul>
+            <li>
+              <FancyButton to="/" menuTab="Home" />
+            </li>
+            {courseList.map(courseName =>
+              <li key={courseName.id}>
+                <FancyButton to={"/" + courseName.class.toLowerCase().replace(/\s/g, '')} menuTab={courseName.class} />
+              </li>)
+            }
+          </ul>
+        </div>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
           {courseList.map(courseName =>
-            <li key={courseName.id}>
-              <FancyButton to={"/" + courseName.class.toLowerCase().replace(/\s/g, '')} menuTab={courseName.class} />
-            </li>)
-          }
-        </ul>
-      </div>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        {courseList.map(courseName =>
-          <Route key={courseName.id} path={"/" + courseName.class.toLowerCase().replace(/\s/g, '')}>
-            <Route>
-              <Route index element={<DummyClass courseName={courseName.class} />} />
-              <Route path=":postId" element={<SinglePostPage courseName={courseName.class} />} />
+            <Route key={courseName.id} path={"/" + courseName.class.toLowerCase().replace(/\s/g, '')}>
+              <Route>
+                <Route index element={<DummyClass courseName={courseName.class} />} />
+                <Route path=":postId" element={<SinglePostPage courseName={courseName.class} />} />
+              </Route>
             </Route>
-          </Route>
-        )
-        }
-        <Route path="/createpost" element={<CreatePost />} />
-      </Routes>
-    </div>
+          )
+          }
+          <Route path="/createpost" element={<CreatePost />} />
+        </Routes>
+      </div>
   )
 }
 
