@@ -3,7 +3,6 @@ import './createPost.css';
 import { Link } from 'react-router-dom';
 import ClassPosts from './ClassPosts';
 import getRandPosts from './utils';
-import { create_post } from './apicalls.jsx';
 import api from './apicalls.jsx'
 
 function CreatePost() {

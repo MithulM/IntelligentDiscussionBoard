@@ -10,6 +10,10 @@
     gap: 5px;
 }
 
+p, Link, h1, h2 {
+    color: #f1f1f1 ;
+}
+
 .post {
     background-color: #154734;
     padding: 10px;

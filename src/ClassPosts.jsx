@@ -13,8 +13,8 @@ function ClassPosts({ title, postList }) {
             <div className="posts">
                 {
                     postList.map((item) => (
-                        <Link to={`${item.post_id}`} key={item.post_id} className="post">
-                            <h2>{item.title}</h2>
+                        <Link to={`/cs4332/${item.post_id}`} key={item.post_id} className="post">
+                            <p>{item.title}</p>
                             <p>{item.answer}</p>
                         </Link>))
                 }

@@ -1,0 +1,73 @@
+.single-post-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.post-body-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  max-width: 800px;
+  width: 90%;
+}
+
+.post-body-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.post-body-text {
+  font-size: 18px;
+}
+
+.comments-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  max-width: 800px;
+  width: 90%;
+}
+
+.comments-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.comments-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.comments-label {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.comments-input {
+  font-size: 18px;
+  padding: 10px;
+  margin-bottom: 10px;
+  resize: none;
+}
+
+.comments-button {
+  font-size: 18px;
+  padding: 10px 20px;
+  background-color: #b19f9f
+}
