@@ -50,6 +50,29 @@ function SinglePostPage() {
         fetchPost();
     }, []);
 
+    async function createAnswer() {
+
+        console.log(document.getElementById("comment-body").value);
+
+        try {
+            const response = await api.post(`/create_post`, {
+                content: document.getElementById("comment-body").value,
+                post_id: postId,
+                user_id: 3
+            });
+            console.log(response.data);
+            setComments([...comments, response.data]);
+        } catch (err) {
+            if (err.response) {
+                console.log(err.response.data);
+                console.log(err.response.status);
+                console.log(err.response.headers);
+            } else {
+                console.log(`Error: ${err.message}`);
+            }
+        }
+    }
+
     return (
         <div className="single-post-page">
             <div className="post-body-container">
