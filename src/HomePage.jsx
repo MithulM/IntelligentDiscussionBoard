@@ -14,7 +14,6 @@ function HomePage() {
     const profID = 1;
     const userID = 3;
 
-    // Create an object with professer, recommended, self, recent keys, and values for each have an id, question, and answer in lorem ipsum.
     let data = [];
     let topics = [
         {
@@ -37,7 +36,7 @@ function HomePage() {
     for (let i = 0; i < topics.length; i++) {
         data.push({
             topic: topics[i].topic,
-            post_id: i,
+            topic_id: i,
             posts: topics[i].var
         }
         );
@@ -62,7 +61,7 @@ function HomePage() {
     return (
         <div className="main">
             {data.map((item) => (
-                <div key={item.post_id} className="HomePagePosts">
+                <div key={item.topic_id} className="HomePagePosts">
                     <ClassPosts title={item.topic + " Posts"} postList={item.posts} />
                 </div>
             ))}

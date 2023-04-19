@@ -53,8 +53,8 @@ function SinglePostPage() {
     return (
         <div className="single-post-page">
             <div className="post-body-container">
-                <h2 className="post-body-title">{post.title}</h2>
-                <div className="post-body-text">{post.content}</div>
+                <h2 className="post-body-title">{post.post_title}</h2>
+                <div className="post-body-text">{post.post_content}</div>
             </div>
             <div className="comments-container">
                 <h3 className="comments-title">Comments</h3>
