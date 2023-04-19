@@ -3,55 +3,22 @@ import './DummyClass.css';
 import ClassPosts from './ClassPosts'
 import getRandPosts from './utils.jsx'
 import { Link } from 'react-router-dom'
-import api from './apicalls'
+import {getAPI} from './apicalls'
 
 function DummyClass({ courseName }) {
     const [search, setSearch] = useState("");
     const [posts, setPosts] = useState([]);
     const postsPerPage = 10;
 
-    async function fetchPosts() {
-        try {
-            const response = await api.get(`/get_all_posts/${postsPerPage}`);
-            setPosts(response.data);
-        } catch (err) {
-            if (err.response) {
-                console.log(err.response.data);
-                console.log(err.response.status);
-                console.log(err.response.headers);
-            } else {
-                console.log(`Error: ${err.message}`);
-            }
-        }
-    }
-
-
     useEffect(() => {
-        fetchPosts();
+        getAPI("get_all_posts", [postsPerPage], setPosts);
     }, []);
 
     useEffect(() => {
-        async function fetchSearchedPosts() {
-            try {
-                const response = await api.get(`/search/${search}`);
-                console.log(`Posts for ${search}`);
-                console.log(response.data);
-                setPosts(response.data);
-            } catch (err) {
-                if (err.response) {
-                    console.log(err.response.data);
-                    console.log(err.response.status);
-                    console.log(err.response.headers);
-                } else {
-                    console.log(`Error: ${err.message}`);
-                }
-            }
-        }
-
         if (search.length != 0) {
-            fetchSearchedPosts();
+            getAPI("search", [search], setPosts);
         } else {
-            fetchPosts();
+            getAPI("get_all_posts", [postsPerPage], setPosts);
         }
     }, [search])
 

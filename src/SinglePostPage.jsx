@@ -74,28 +74,29 @@ function SinglePostPage() {
     }
 
     return (
-       <div className="single-post-page">
-           <div className="post-body-container">
-               <h2 className="post-body-title">{post.title}</h2>
-               <div className="post-body-text">{post.content}</div>
-           </div>
-           <div className="comments-container">
-               <h3 className="comments-title">Comments</h3>
-               <form className="comments-form" onSubmit={createAnswer}>
-                   <label className="comments-label">Leave a comment:</label>
-                   <textarea
-                       className="comments-input"
-                       id="comment-body"
-                       placeholder="Enter your comment here"
-                       rows="10"
-                       cols="60">
-                   </textarea>
-                  <button className="comments-button" type="submit">
-                       Submit
+        <div className="single-post-page">
+            <div className="post-body-container">
+                <h2 className="post-body-title">{post.post_title}</h2>
+                <div className="post-body-text">{post.post_content}</div>
+            </div>
+            <div className="comments-container">
+                <h3 className="comments-title">Comments</h3>
+                <form className="comments-form" action="/create-comment" method="post">
+                    <label className="comments-label" htmlFor="comment-body">Leave a comment:</label>
+                    <textarea
+                        className="comments-input"
+                        id="comment-body"
+                        name="comment-body"
+                        placeholder="Enter your comment here"
+                        rows="10"
+                        cols="60"
+                    ></textarea>
+                    <button className="comments-button" type="submit">
+                        Submit
                     </button>
-               </form>
-           </div>
-       </div>
+                </form>
+            </div>
+        </div>
     );
 }
 

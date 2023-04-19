@@ -30,6 +30,10 @@ ol, ul {
   list-style: none;
 }
 
+Link, h1, h2, p {
+  color: white;
+}
+
 blockquote,
 q {
   quotes: none;
