@@ -32,7 +32,7 @@ function SinglePostPage() {
         console.log(document.getElementById("comment-body").value);
 
         try {
-            const response = await api.post(`/create_post`, {
+            const response = await api.post(`/create_post/`, {
                 content: document.getElementById("comment-body").value,
                 post_id: postID,
                 user_id: 3
@@ -50,6 +50,11 @@ function SinglePostPage() {
         }
     }
 
+    const REPLY_STYLE = {
+        position: "relative",
+        left: -200,
+    }
+
     return (
         <div className="single-post-page">
             <div className="post-body-container">
@@ -63,6 +68,17 @@ function SinglePostPage() {
                     </Modal>
                 </div>
             </div>
+            <div className="replies">
+                {comments.map((comment) => (
+                    <div className="reply">
+                        <div className="reply-body">
+                            <div className="reply-text">{comment.answer_content}</div>
+                            <div className="reply-author">Created By User {comment.user_id}</div>
+                            <div className="reply-date">Created on {comment.created_at}</div>
+                        </div>
+                    </div>
+                    ))}
+            </div>
             <div className="comments-container">
                 <h3 className="comments-title">Comments</h3>
                 <form className="comments-form">
@@ -74,7 +90,7 @@ function SinglePostPage() {
                         rows="10"
                         cols="60"
                     ></textarea>
-                    <button className="comments-button" type="submit">
+                    <button className="comments-button" type="submit" onClick={createAnswer}>
                         Submit
                     </button>
                 </form>

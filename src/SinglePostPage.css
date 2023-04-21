@@ -78,6 +78,11 @@
   width: 100%;
 }
 
+.replies {
+  position: relative;
+  left: -200px;
+}
+
 .ModifyPost {
   display: inline;
   font-size: 18px;
