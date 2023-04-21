@@ -81,12 +81,11 @@ function SinglePostPage() {
             </div>
             <div className="comments-container">
                 <h3 className="comments-title">Comments</h3>
-                <form className="comments-form" action="/create-comment" method="post">
-                    <label className="comments-label" htmlFor="comment-body">Leave a comment:</label>
+                <form className="comments-form">
+                    <label className="comments-label">Leave a comment:</label>
                     <textarea
                         className="comments-input"
                         id="comment-body"
-                        name="comment-body"
                         placeholder="Enter your comment here"
                         rows="10"
                         cols="60"
