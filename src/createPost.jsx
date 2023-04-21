@@ -1,15 +1,14 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import './createPost.css';
-import { Link } from 'react-router-dom';
 import ClassPosts from './ClassPosts';
 import getRandPosts from './utils';
 import { getAPI, postAPI } from './apicalls.jsx'
 
 function CreatePost() {
-  const title = useRef();
-  const content = useRef();
-  const courseId = useRef();
-  const userId = useRef();
+  const [title, setTitle] = useState("It works");
+  const [content, setContent] = useState("Class, Time, Exam");
+  const [courseId, setCourseId] = useState("2");
+  const [userId, setUserId] = useState("3");
 
   async function submitPost(event) {
     event.preventDefault();
@@ -17,18 +16,16 @@ function CreatePost() {
     console.log("Course Id: " + courseId);
     console.log("Title: " + title)
     console.log("Content: " + content);
-    const response = await postAPI("create_post", {user_id: Number(userId), course_id: Number(courseId), title: title, content: content});
+    const response = await postAPI("create_post", { user_id: Number(userId), course_id: Number(courseId), title: title, content: content });
     console.log(response);
   }
-
-
 
   return (
     <div className="create-post-container">
       <div className="create-post">
         <h2 className="create-post__title">Create Post</h2>
         <form className="create-post__form" onSubmit={submitPost}>
-          <label ref={title} className="create-post__label" htmlFor="post-title">
+          <label className="create-post__label" htmlFor="post-title">
             Post Title
           </label>
           <input

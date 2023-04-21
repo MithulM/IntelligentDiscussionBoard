@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import './ClassPosts.css'
 import { Link } from 'react-router-dom';
 import { getTimeAgoString } from './utils.jsx';
-import { getAPI } from './apicalls.jsx';
 
 function ClassPosts({ title, postList }) {
 
