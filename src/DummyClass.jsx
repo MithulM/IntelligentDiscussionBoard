@@ -8,7 +8,7 @@ import { getAPI } from './apicalls'
 function DummyClass({ courseName, classID }) {
     const search = useRef("");
     const [posts, setPosts] = useState([]);
-    const postsPerPage = 10;
+    const postsPerPage = 20;
 
     useEffect(() => {
         getAPI("get_all_posts", [classID, postsPerPage], setPosts);

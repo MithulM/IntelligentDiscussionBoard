@@ -13,7 +13,7 @@ function ClassPosts({ title, postList }) {
             </h1>
             <div className="posts">{
                 postList.map((item) => (
-                    <Link to={`/cs4332/${item.post_id}`} key={item.post_id} className="post">
+                    <Link to={`/${item.course.course_number.toLowerCase().replace(/\s/g, '')}/${item.post_id}`} key={item.post_id} className="post">
                         <div className="postHeading">
                             <span className='postTitle'>{item.post_title}</span>
                             <span className="author">{item.user.username}</span>
@@ -24,11 +24,14 @@ function ClassPosts({ title, postList }) {
                             <p>{item.post_content}</p>
                         </div>
                         <div className="answerCount">
-                            No. of comments: <span>{item.answer_count}</span>
+                            <span>No. of comments:</span>
+                            <span>&nbsp;</span>
+                            <span className="numComment">{item.answer_count}</span>
+                            <span>{item.course.course_number}</span>
                         </div>
                     </Link>))}
             </div>
-        </div >
+        </div>
     )
 }
 
