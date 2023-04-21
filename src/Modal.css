@@ -20,11 +20,10 @@
     background-color: whitesmoke;
     color: black;
     z-index: 10000;
-    overflow: auto;
+    overflow: none;
     align-items: center;
-    width: 500px;
-    height: 300px;
     border-radius: 20px;
+    padding: 10px;
     justify-content: center;
 }
 
@@ -42,7 +41,7 @@
 .content {
     background-color: white;
     color: black;
-    width: 90%;
+    width: 500px;
     padding: 20px;
     border-radius: 10px;
     text-align: center;

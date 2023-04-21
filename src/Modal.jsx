@@ -15,8 +15,8 @@ function Modal({ open, title, children, onClose, onConfirm }) {
                     {children}
                 </div>
                 <div className="button-container">
-                    <button className="cancel-button" onClick={onClose}>No</button>
-                    <button className="confirm-button" onClick={onConfirm}>Yes</button>
+                    <button className="cancel-button" onClick={onClose}>Cancel</button>
+                    <button className="confirm-button" onClick={onConfirm}>Confirm</button>
                 </div>
             </div>
         </React.Fragment>,

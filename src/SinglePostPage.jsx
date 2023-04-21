@@ -9,6 +9,8 @@ function SinglePostPage() {
     const [post, setPost] = useState({});
     const [comments, setComments] = useState([]);
     const [isDelete, setDelete] = useState(false);
+    const [isReply, setReply] = useState(false);
+    const [isEdit, setEdit] = useState(false);
     const navigate = useNavigate();
     let { postID } = useParams();
 
@@ -27,44 +29,42 @@ function SinglePostPage() {
         navigate("/" + post.course.course_number.toLowerCase().replace(/\s/g, ''));
     }
 
-    async function createAnswer() {
-
-        console.log(document.getElementById("comment-body").value);
-
-        try {
-            const response = await api.post(`/create_post/`, {
-                content: document.getElementById("comment-body").value,
-                post_id: postID,
-                user_id: 3
-            });
-            console.log(response.data);
-            setComments([...comments, response.data]);
-        } catch (err) {
-            if (err.response) {
-                console.log(err.response.data);
-                console.log(err.response.status);
-                console.log(err.response.headers);
-            } else {
-                console.log(`Error: ${err.message}`);
-            }
-        }
-    }
-
-    const REPLY_STYLE = {
-        position: "relative",
-        left: -200,
-    }
-
     return (
         <div className="single-post-page">
             <div className="post-body-container">
                 <h2 className="post-body-title">{post.post_title}</h2>
                 <div className="post-body-text">{post.post_content}</div>
+                <br></br>
                 <div className="modify">
-                    <button className="ModifyPost edit">Edit</button>
+                    <button onClick={() => setReply(true)} className="ModifyPost" >Reply</button>
+                    <Modal open={isReply} onClose={() => setReply(false)} title="Reply">
+                        <form className="comments-form">
+                            <label className="comments-label">Leave a comment:</label>
+                            <textarea
+                                className="comments-input"
+                                id="comment-body"
+                                placeholder="Enter your comment here"
+                                rows="10"
+                                cols="45"
+                            ></textarea>
+                        </form>
+                    </Modal>
+                    <button onClick={() => setEdit(true)} className="ModifyPost edit">Edit</button>
+                    <Modal open={isEdit} onClose={() => setEdit(false)} title="Edit Post">
+                        <form className="edit-form">
+                            <label className="edit-label">Edit your post: </label>
+                            <textarea
+                                className="edit-input"
+                                id="edit-body"
+                                placeholder="Edit your post"
+                                rows="10"
+                                cols="45"
+                            ></textarea>
+                        </form>
+                    </Modal>
                     <button onClick={() => setDelete(true)} className="ModifyPost delete" >Delete</button>
                     <Modal open={isDelete} onClose={() => setDelete(false)} title="Delete Post" onConfirm={confirmDelete}>
-                        Are you sure you want to delete this post.
+                        Are you sure you want to delete this post?
                     </Modal>
                 </div>
             </div>
@@ -78,22 +78,6 @@ function SinglePostPage() {
                         </div>
                     </div>
                     ))}
-            </div>
-            <div className="comments-container">
-                <h3 className="comments-title">Comments</h3>
-                <form className="comments-form">
-                    <label className="comments-label">Leave a comment:</label>
-                    <textarea
-                        className="comments-input"
-                        id="comment-body"
-                        placeholder="Enter your comment here"
-                        rows="10"
-                        cols="60"
-                    ></textarea>
-                    <button className="comments-button" type="submit" onClick={createAnswer}>
-                        Submit
-                    </button>
-                </form>
             </div>
         </div>
     );
