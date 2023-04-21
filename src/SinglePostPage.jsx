@@ -9,6 +9,7 @@ function SinglePostPage() {
     const [post, setPost] = useState({});
     const [comments, setComments] = useState([]);
     const [isDelete, setDelete] = useState(false);
+    const [isReply, setReply] = useState(false);
     const navigate = useNavigate();
     let { postID } = useParams();
 
@@ -61,10 +62,23 @@ function SinglePostPage() {
                 <h2 className="post-body-title">{post.post_title}</h2>
                 <div className="post-body-text">{post.post_content}</div>
                 <div className="modify">
+                    <button onClick={() => setReply(true)} className="create-reply" >Reply</button>
+                    <Modal open={isReply} onClose={() => setReply(false)} title="Reply">
+                        <form className="comments-form">
+                            <label className="comments-label">Leave a comment:</label>
+                            <textarea
+                                className="comments-input"
+                                id="comment-body"
+                                placeholder="Enter your comment here"
+                                rows="10"
+                                cols="45"
+                            ></textarea>
+                        </form>
+                    </Modal>
                     <button className="ModifyPost edit">Edit</button>
                     <button onClick={() => setDelete(true)} className="ModifyPost delete" >Delete</button>
                     <Modal open={isDelete} onClose={() => setDelete(false)} title="Delete Post" onConfirm={confirmDelete}>
-                        Are you sure you want to delete this post.
+                        Are you sure you want to delete this post?
                     </Modal>
                 </div>
             </div>
@@ -78,22 +92,6 @@ function SinglePostPage() {
                         </div>
                     </div>
                     ))}
-            </div>
-            <div className="comments-container">
-                <h3 className="comments-title">Comments</h3>
-                <form className="comments-form">
-                    <label className="comments-label">Leave a comment:</label>
-                    <textarea
-                        className="comments-input"
-                        id="comment-body"
-                        placeholder="Enter your comment here"
-                        rows="10"
-                        cols="60"
-                    ></textarea>
-                    <button className="comments-button" type="submit" onClick={createAnswer}>
-                        Submit
-                    </button>
-                </form>
             </div>
         </div>
     );
