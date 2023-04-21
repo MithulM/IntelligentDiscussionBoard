@@ -1,69 +1,76 @@
-p, Link, h1, h2, span, div {
-    color: #f1f1f1 ;
+p,
+Link,
+h1,
+h2,
+span,
+div {
+  color: #f1f1f1;
 }
 
 .classPosts {
-    height: 100%;
-    background-color: #1f1f1f;
-    overflow-y: scroll;
+  height: 100%;
+  background-color: #1f1f1f;
+  overflow-y: scroll;
 }
 
 .posts {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
 }
 
 .post {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    background-color: #154734;
-    padding: 10px;
-    border-radius: 20px;
-    box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, .8);
-    transform: translateY(0px);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background-color: #154734;
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.8);
+  transform: translateY(0px);
 }
 
 .post:hover {
-    background-color: #1d5f3c;
-    box-shadow: 20px var(--gapY) 30px 2px rgba(0, 0, 0, .8);
-    transform: translateY(calc(var(--gapY) / -2));
+  background-color: #1d5f3c;
+  box-shadow: 20px var(--gapY) 30px 2px rgba(0, 0, 0, 0.8);
+  transform: translateY(calc(var(--gapY) / -2));
 }
 
 .classTitle {
-    position: sticky;
-    top: 0;
-    background-color: #1d5f3c;
-    padding: 10px;
-    margin: 0;
-    font-size: 24px;
-    font-weight: bold;
-    z-index: 1;
-    text-align: center;
+  position: sticky;
+  top: 0;
+  background-color: #1d5f3c;
+  padding: 10px;
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+  z-index: 1;
+  text-align: center;
+  width: 100%;
 }
 
 .postHeading {
-    display: inline-flex;
-    align-self: flex-end;
-    gap: 4px;
-    width: 100%;
+  display: inline-flex;
+  align-self: flex-end;
+  gap: 4px;
+  width: 100%;
 }
 
 .postTitle {
-    margin: 0;
-    flex: 1;
-    font-size: 20px;
+  margin: 0;
+  flex: 1;
+  font-size: 20px;
 }
 
 .contentPreview {
-    text-align: justify;
-    word-wrap: normal;
-    margin-left: 15px;
-    margin-right: 15px;
-    font-size: 14px;
+  text-align: justify;
+  word-wrap: normal;
+  margin-left: 15px;
+  margin-right: 15px;
+  font-size: 14px;
 }
 
 .answerCount {
-    font-size: 14px;
+  font-size: 14px;
 }

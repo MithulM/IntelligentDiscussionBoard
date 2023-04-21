@@ -28,7 +28,6 @@ function DummyClass({ courseName, classID }) {
         <React.Fragment>
             <div className="classPage">
                 <div className="search">
-                    <form className="formFormat" onSubmit={(event) => setSearch(event, classID)}>
                         <input className="searchBar"
                             ref={search}
                             type="search"
@@ -36,8 +35,7 @@ function DummyClass({ courseName, classID }) {
                             rows="1"
                             cols="500"
                         />
-                        <button className="searchButton" type="submit">search</button>
-                    </form>
+                        <button onClick={(event) => setSearch(event, classID)}className="searchButton" type="submit">search</button>
                 </div>
                 <div className="postsList">
                     <div className="posts">
