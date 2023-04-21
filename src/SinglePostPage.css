@@ -71,3 +71,29 @@
   padding: 10px 20px;
   background-color: #b19f9f
 }
+
+.modify {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.ModifyPost {
+  display: inline;
+  font-size: 18px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.edit {
+  cursor: pointer;
+  background-color: #b19f9f;
+}
+
+.delete {
+  cursor: pointer;
+  background-color: #990000;
+}

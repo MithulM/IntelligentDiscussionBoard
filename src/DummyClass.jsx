@@ -8,11 +8,11 @@ import { getAPI } from './apicalls'
 function DummyClass({ courseName, classID }) {
     const search = useRef("");
     const [posts, setPosts] = useState([]);
-    const postsPerPage = 10;
+    const postsPerPage = 100;
 
     useEffect(() => {
         getAPI("get_all_posts", [classID, postsPerPage], setPosts);
-    }, []);
+    }, [classID]);
 
     const setSearch = (event, classID) => {
         event.preventDefault()
@@ -20,7 +20,7 @@ function DummyClass({ courseName, classID }) {
         if (value.length != 0) {
             getAPI("search", [value], setPosts);
         } else {
-            getAPI("get_all_posts", [classID, postsPerPage], setPosts);
+            setCurrentClassID(classID);
         }
     }
 

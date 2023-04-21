@@ -1,0 +1,27 @@
+.Modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: whitesmoke;
+    color: black;
+    padding: 50px;
+    z-index: 10000;
+    align-self: flex-start;
+    overflow: auto;
+    width: 500px;
+    height: 300px;
+    border-radius: 10px
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: RGBA(0, 0, 0, .7);
+    z-index: 10000;
+}

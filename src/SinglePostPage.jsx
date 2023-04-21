@@ -2,17 +2,19 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom"
 import api from './apicalls.jsx';
 import './SinglePostPage.css';
+import Modal from './Modal.jsx';
 
 function SinglePostPage() {
     const [post, setPost] = useState({});
     const [comments, setComments] = useState([]);
-    let { postId } = useParams();
+    const [isDelete, setDelete] = useState(false);
+    let { postID } = useParams();
 
     useEffect(() => {
 
         async function fetchPost() {
             try {
-                const response = await api.get(`/get_specific_post/${postId}`);
+                const response = await api.get(`/get_specific_post/${postID}`);
                 console.log(response.data)
                 setPost(response.data);
             } catch (err) {
@@ -33,7 +35,7 @@ function SinglePostPage() {
 
         async function fetchPost() {
             try {
-                const response = await api.get(`/get_answers_for_post/${postId}`);
+                const response = await api.get(`/get_answers_for_post/${postID}`);
                 console.log(response.data)
                 setComments(response.data);
             } catch (err) {
@@ -57,7 +59,7 @@ function SinglePostPage() {
         try {
             const response = await api.post(`/create_post`, {
                 content: document.getElementById("comment-body").value,
-                post_id: postId,
+                post_id: postID,
                 user_id: 3
             });
             console.log(response.data);
@@ -78,6 +80,13 @@ function SinglePostPage() {
             <div className="post-body-container">
                 <h2 className="post-body-title">{post.post_title}</h2>
                 <div className="post-body-text">{post.post_content}</div>
+                <div className="modify">
+                    <button className="ModifyPost edit">Edit</button>
+                    <button onClick={() => setDelete(true)} className="ModifyPost delete" >Delete</button>
+                    <Modal open={isDelete} onClose={() => setDelete(false)}>
+                        Are you sure you want to delete this post.
+                    </Modal>
+                </div>
             </div>
             <div className="comments-container">
                 <h3 className="comments-title">Comments</h3>

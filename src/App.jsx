@@ -69,10 +69,11 @@ function App() {
         {courseList.map(courseName =>
           <Route key={courseName.id} path={"/" + courseName.class.toLowerCase().replace(/\s/g, '')}>
             <Route index element={<DummyClass courseName={courseName.class} classID={courseName.id}/>} />
-            <Route path=":postId" element={<SinglePostPage courseName={courseName.class} />} />
+            <Route path=":postID" element={<SinglePostPage courseName={courseName.class} />} />
           </Route>
         )}
         <Route path="/createpost" element={<CreatePost />} />
+        <Route path="/editpost/:postID" element={<editPostPage />} />
       </Routes>
     </div>
   )
