@@ -16,7 +16,7 @@
     box-sizing: border-box;
     display: inline;
     float: left;
-    width: 80%;
+    width: 90%;
     padding: 10px;
     border: 2px solid #ccc;
     border-radius: 5px;
@@ -62,6 +62,7 @@
 .postsList {
     display: flex;
     flex: 1;
+    width: 100%;
 }
 
 .classCreatePostBtn {
