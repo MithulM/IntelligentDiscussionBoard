@@ -8,7 +8,9 @@ export async function getAPI(apiCall, params, setVar) {
         for (let i = 0; i < params.length; i++) {
             URLparams += "/" + String(params[i]);
         }
+        console.log("params", params);
         const response = await axios.get(serverURL + "/" + apiCall + URLparams);
+        console.log(serverURL + "/" + apiCall + URLparams);
         console.log(response.data);
         setVar(response.data);
         return response.data;

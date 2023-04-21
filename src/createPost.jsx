@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './createPost.css';
 import { Link } from 'react-router-dom';
 import ClassPosts from './ClassPosts';
@@ -6,10 +6,10 @@ import getRandPosts from './utils';
 import { getAPI, postAPI } from './apicalls.jsx'
 
 function CreatePost() {
-  const [title, setTitle] = useState("It works");
-  const [content, setContent] = useState("Class, Time, Exam");
-  const [courseId, setCourseId] = useState("2");
-  const [userId, setUserId] = useState("3");
+  const title = useRef();
+  const content = useRef();
+  const courseId = useRef();
+  const userId = useRef();
 
   async function submitPost(event) {
     event.preventDefault();
@@ -28,7 +28,7 @@ function CreatePost() {
       <div className="create-post">
         <h2 className="create-post__title">Create Post</h2>
         <form className="create-post__form" onSubmit={submitPost}>
-          <label className="create-post__label" htmlFor="post-title">
+          <label ref={title} className="create-post__label" htmlFor="post-title">
             Post Title
           </label>
           <input

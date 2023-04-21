@@ -26,8 +26,8 @@ function ClassPosts({ title, postList }) {
                         <div className="answerCount">
                             No. of comments: <span>{item.answer_count}</span>
                         </div>
-                    </Link>))
-            }</div>
+                    </Link>))}
+            </div>
         </div >
     )
 }

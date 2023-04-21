@@ -1,3 +1,14 @@
+import { Navigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
+
+export function LoginRoute({ authed, Component }) {
+    return authed ? (
+        <Component />
+    ) : (
+        <Navigate to="/login" />
+    );
+}
+
 export const randCont = (min, max) => {
     const length = Math.floor(Math.random() * (max - min + 1)) + min;
     const characters = 'abcdefghijklmnopqrstuvwxyz      ';
@@ -29,7 +40,7 @@ export const getRandPosts = (min, max) => {
                 user_id: Math.floor(Math.random() * (max - min + 1)) + min,
                 email: "Fname.Lname@domain.com"
             },
-            user_id : 3
+            user_id: 3
         })
     }
     return postList;
@@ -64,5 +75,10 @@ export function getTimeAgoString(timestamp) {
     }
 }
 
+export function checkAuth() {
+    const auth = Cookies.get("name") !== undefined && Cookies.get("password") !== undefined;
+    console.log("auth", auth)
+    return (auth);
+}
 
 export default getRandPosts;
