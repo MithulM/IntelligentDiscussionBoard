@@ -3,7 +3,9 @@ import { useParams } from "react-router-dom"
 import { getAPI, deleteAPI } from './apicalls.jsx';
 import { useNavigate } from 'react-router-dom';
 import './SinglePostPage.css';
+import { getTimeAgoString } from './utils.jsx';
 import Modal from './Modal.jsx';
+import Comment from './Comment.jsx';
 
 function SinglePostPage() {
     const [post, setPost] = useState({});
@@ -32,6 +34,10 @@ function SinglePostPage() {
     return (
         <div className="single-post-page">
             <div className="post-body-container">
+                <div className="onePostInfo">
+                    <span className="post-course-title">{post.course && `Course: ${post.course.course_number}`}&nbsp;</span>
+                    <span className="post-date">Posted: {post.time_created && `${getTimeAgoString(post.time_created)}`}</span>
+                </div>
                 <h2 className="post-body-title">{post.post_title}</h2>
                 <div className="post-body-text">{post.post_content}</div>
                 <br></br>
@@ -69,15 +75,8 @@ function SinglePostPage() {
                 </div>
             </div>
             <div className="replies">
-                {comments.map((comment) => (
-                    <div className="reply">
-                        <div className="reply-body">
-                            <div className="reply-text">{comment.answer_content}</div>
-                            <div className="reply-author">Created By User {comment.user_id}</div>
-                            <div className="reply-date">Created on {comment.created_at}</div>
-                        </div>
-                    </div>
-                    ))}
+                {comments && <span className="section-title">Replies:</span>}
+                <Comment depth={0} comments={comments} />
             </div>
         </div>
     );

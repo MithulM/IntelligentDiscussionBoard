@@ -18,6 +18,17 @@
   width: 90%;
 }
 
+.onePostInfo {
+  display: flex;
+  font-size: 1em;
+  display: flex;
+}
+
+.onePostInfo>* {
+  opacity: .4;
+  color: #bbb;
+}
+
 .post-body-title {
   font-size: 36px;
   font-weight: bold;
