@@ -2,120 +2,142 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #252222;
+}
+
+.wrap-everything {
+  background-color: #1a1a1a;
+  width: 90%;
+}
+
+.post-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  max-width: 800px;
+  width: 100%;
 }
 
 .post-body-container {
   display: flex;
   flex-direction: column;
-  align-items: left;
-  margin: 20px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
+  align-items: flex-start;
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid #595c5f;
+  border-radius: 4px;
+  background-color: #cfa5a5;
   max-width: 800px;
-  width: 90%;
+  width: 100%;
 }
 
 .onePostInfo {
   display: flex;
-  font-size: 1em;
-  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #a5a5a5;
 }
 
-.onePostInfo>* {
-  opacity: .4;
-  color: #bbb;
+.onePostInfo > * {
+  margin-right: 10px;
 }
+
+.post-course-title {
+  font-weight: bold;
+  color: #0576cc;
+}
+
 
 .post-body-title {
-  font-size: 36px;
+  font-size: 28px;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin: 10px 0;
 }
 
 .post-body-text {
-  font-size: 18px;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 20px;
 }
 
-.comments-container {
+.comment-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   margin: 20px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
   max-width: 800px;
-  width: 90%;
+  width: 100%;
 }
 
-.comments-title {
-  font-size: 24px;
+.section-title {
+  font-size: 18px;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
-.comments-form {
+.comment {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   margin-top: 10px;
-}
-
-.edit-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 10px;
-}
-
-.edit-label {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-
-.comments-input {
-  font-size: 18px;
   padding: 10px;
-  margin-bottom: 10px;
-  resize: none;
-}
-
-.comments-button {
-  font-size: 18px;
-  padding: 10px 20px;
-  background-color: #b19f9f
-}
-
-.modify {
-  display: flex;
-  justify-content: space-around;
+  border: 1px solid #c6cbd1;
+  border-radius: 4px;
+  background-color: #f5f8fa;
   width: 100%;
 }
 
-.replies {
-  position: relative;
-  left: -200px;
-}
-
-.ModifyPost {
-  display: inline;
-  font-size: 18px;
-  padding: 10px 20px;
+.comment-header {
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex: 1;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #a5a5a5;
 }
 
-.edit {
-  cursor: pointer;
-  background-color: #b19f9f;
+.comment-header > * {
+  margin-right: 10px;
 }
 
-.delete {
+.comment-author {
+  font-weight: bold;
+}
+
+.comment-time {
+  margin-left: auto;
+}
+
+.comment-body {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.comment-actions {
+  display: flex;
+  align-items: center;
+}
+
+.comment-action {
   cursor: pointer;
-  background-color: #990000;
+  font-size: 14px;
+  padding: 6px 12px;
+  margin-right: 10px;
+  border-radius: 4px;
+}
+
+.comment-action:hover {
+  background-color: #e5e5e5;
+}
+
+.comment-reply {
+  margin-left: auto;
+  color: #0079d3;
+  font-weight: bold;
 }
