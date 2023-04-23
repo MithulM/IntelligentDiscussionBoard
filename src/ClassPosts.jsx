@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import './ClassPosts.css'
 import { Link } from 'react-router-dom';
 import { getTimeAgoString } from './utils.jsx';
+import PostFooter from './postFooter';
 
 function ClassPosts({ title, postList }) {
 
@@ -28,6 +29,7 @@ function ClassPosts({ title, postList }) {
                             <span className="numComment">{item.answer_count}</span>
                             <span>{item.course.course_number}</span>
                         </div>
+                        <PostFooter/>
                     </Link>))}
             </div>
         </div>

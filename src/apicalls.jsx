@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const serverURL = "https://eflask-idb-be.herokuapp.com";
+// serverURL = "localhost:5000"
 
 export async function getAPI(apiCall, params, setVar) {
     try {

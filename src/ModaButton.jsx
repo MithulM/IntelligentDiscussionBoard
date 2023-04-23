@@ -1,20 +1,12 @@
+import { Children } from "react";
 import Modal from "./Modal";
 
-function ModalButton({ title, className, isOpen}) {
+function ModalButton({ title, className, isOpen, children, setFunc, buttonName, onConfirm }) {
     return (
         <>
-            <button onClick={() => setFunc(true)} className={className} >Reply</button>
-            <Modal open={isOpen} onClose={() => setFunc(false)} title={title}>
-                <form className="comments-form">
-                    <label className="comments-label">Leave a comment:</label>
-                    <textarea
-                        className="comments-input"
-                        id="comment-body"
-                        placeholder="Enter your comment here"
-                        rows="10"
-                        cols="45"
-                    ></textarea>
-                </form>
+            <button onClick={() => setFunc(true)} className={className} >{buttonName}</button>
+            <Modal open={isOpen} onClose={() => setFunc(false)} title={title} onConfirm={onConfirm}>
+                {children}
             </Modal>
         </>
     )

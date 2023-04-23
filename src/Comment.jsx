@@ -1,6 +1,6 @@
 import { getTimeAgoString } from "./utils";
 import "./Comment.css"
-import SinglePostPage from "./SinglePostPage.css";
+import PostFooter from "./postFooter";
 
 function style(depth) {
     return {
@@ -25,13 +25,7 @@ function Comment({ comments, depth }) {
                             <div className="post-body">
                                 <p>{comment.answer_content}</p>
                             </div>
-                            <div className="modify">
-                                <div className="post-actions">
-                                    <button className="ModifyPost">Reply</button>
-                                    <button className="ModifyPost edit">Edit</button>
-                                    <button className="ModifyPost delete">Delete</button>
-                                </div>
-                            </div>
+                            <PostFooter answerID={comment.answer_id} />
                         </div>
                         {comment.replies && <Comment depth={depth + 1} comments={comment.replies} />}
                     </div>
