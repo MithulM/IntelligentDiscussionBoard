@@ -9,7 +9,7 @@ export async function getAPI(apiCall, params, setVar) {
             URLparams += "/" + String(params[i]);
         }
         const response = await axios.get(serverURL + "/" + apiCall + URLparams);
-        // console.log(response.data);
+        console.log(response.data);
         setVar(response.data);
         return response.data;
     } catch (err) {

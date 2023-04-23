@@ -11,6 +11,7 @@ div {
   height: 100%;
   background-color: #1f1f1f;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .posts {
@@ -32,10 +33,10 @@ div {
 }
 
 .post:hover {
-    background-color: #1d5f3c;
-    box-shadow: 20px var(--gapY) 30px 2px rgba(0, 0, 0, 0.8);
-    transform: translateY(calc(var(--gapY) / -2));
-  }
+  background-color: #1d5f3c;
+  box-shadow: 20px var(--gapY) 30px 2px rgba(0, 0, 0, 0.8);
+  transform: translateY(calc(var(--gapY) / -2));
+}
 
 .classTitle {
   position: sticky;
@@ -72,10 +73,10 @@ div {
 }
 
 .answerCount {
-    font-size: 14px;
-    display: flex;
+  font-size: 14px;
+  display: flex;
 }
 
 .numComment {
-    flex: 1;
+  flex: 1;
 }

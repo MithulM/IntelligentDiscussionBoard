@@ -58,18 +58,32 @@ export function getTimeAgoString(timestamp) {
     const diffInMonths = Math.floor(diffInDays / 30);
     const diffInYears = Math.floor(diffInDays / 365);
 
-    if (diffInSeconds < 60) {
+    if (diffInSeconds === 1) {
+        return `1 second ago`;
+    } else if (diffInSeconds < 60) {
         return `${diffInSeconds} seconds ago`;
+    } else if (diffInMinutes === 1) {
+        return `1 minute ago`;
     } else if (diffInMinutes < 60) {
         return `${diffInMinutes} minutes ago`;
+    } else if (diffInHours === 1) {
+        return `1 hour ago`;
     } else if (diffInHours < 24) {
         return `${diffInHours} hours ago`;
+    } else if (diffInDays === 1) {
+        return `1 day ago`;
     } else if (diffInDays < 7) {
         return `${diffInDays} days ago`;
+    } else if (diffInWeeks === 1) {
+        return `1 week ago`;
     } else if (diffInWeeks < 4) {
         return `${diffInWeeks} weeks ago`;
+    } else if (diffInMonths === 1) {
+        return `1 month ago`;
     } else if (diffInMonths < 12) {
         return `${diffInMonths} months ago`;
+    } else if (diffInYears === 1) {
+        return `1 year ago`;
     } else {
         return `${diffInYears} years ago`;
     }

@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import './App.css'
 
-function FancyButton({ to, menuTab, onClick }) {
+function FancyButton({ menuTab, onClick }) {
   return (
     <button className="learn-more" onClick={onClick}>
       <span className="circle">
@@ -64,17 +64,18 @@ function App() {
           </li>
         </ul>
       </div>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        {courseList.map(courseName =>
-          <Route key={courseName.id} path={"/" + courseName.class.toLowerCase().replace(/\s/g, '')}>
-            <Route index element={<DummyClass courseName={courseName.class} classID={courseName.id}/>} />
-            <Route path=":postID" element={<SinglePostPage courseName={courseName.class} />} />
-          </Route>
-        )}
-        <Route path="/createpost" element={<CreatePost />} />
-        <Route path="/editpost/:postID" element={<editPostPage />} />
-      </Routes>
+        <div className='page'>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            {courseList.map(courseName =>
+              <Route key={courseName.id} path={"/" + courseName.class.toLowerCase().replace(/\s/g, '')}>
+                <Route index element={<DummyClass courseName={courseName.class} classID={courseName.id}/>} />
+                <Route path=":postID" element={<SinglePostPage courseName={courseName.class} />} />
+              </Route>
+            )}
+            <Route path="/createpost" element={<CreatePost />} />
+          </Routes>
+        </div>
     </div>
   )
 }
