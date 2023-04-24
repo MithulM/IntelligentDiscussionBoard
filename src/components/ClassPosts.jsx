@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import './styles/ClassPosts.css'
+import '../styles/ClassPosts.css'
 import { Link } from 'react-router-dom';
 import { getTimeAgoString } from '../utils.jsx';
 import PostFooter from './postFooter';

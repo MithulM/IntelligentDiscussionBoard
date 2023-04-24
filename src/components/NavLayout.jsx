@@ -1,6 +1,6 @@
 import { useNavigate, Outlet } from "react-router-dom";
 import FancyButton from "./FancyButton.jsx";
-import "./styles/NavLayout.css"
+import "../styles/NavLayout.css"
 
 function NavLayout({ courseList }) {
     const navigate = useNavigate();

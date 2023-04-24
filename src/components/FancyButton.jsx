@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import "./styles/FancyButton.css"
+import "../styles/FancyButton.css"
 
 function FancyButton({ to, menuTab }) {
     const navigate = useNavigate();

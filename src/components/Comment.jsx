@@ -1,5 +1,5 @@
 import { getTimeAgoString } from "../utils";
-import "./styles/Comment.css"
+import "../styles/Comment.css"
 import PostFooter from "./postFooter";
 
 function style(depth) {
