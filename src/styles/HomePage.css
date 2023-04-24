@@ -3,15 +3,15 @@
     box-sizing: border-box;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 50%);
-    /* grid-gap: var(--gapY); */
+    background: linear-gradient(to bottom, var(--dark3) 0%, #1f1f1f 100%);
     flex: 1;
-    /* padding: 10px; */
-}
-
-.HomePagePosts {
+  }
+  
+  .HomePagePosts {
     border-radius: 20px;
     transform: scale(95%);
     background-color: #1f1f1f;
     height: 50vh;
     overflow: auto;
-}
+  }
+  
