@@ -3,10 +3,11 @@ import DummyClass from './DummyClass.jsx'
 import CreatePost from './createPost.jsx'
 import { Routes, Route } from 'react-router-dom'
 import SinglePostPage from './SinglePostPage.jsx'
-import NavLayout from './NavLayout.jsx'
+import NavLayout from './components/NavLayout.jsx'
 import SignPage from "./Signin.jsx"
 import Register from "./Register.jsx"
 import WebsiteLayout from "./WebsiteLayout.jsx"
+import Missing from "./Missing.jsx"
 import './styles/App.css'
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
             )}
             <Route path="/createpost" element={<CreatePost />} />
           </Route>
+          <Route path="*" element={<Missing />} />
         </Route>
       </Routes>
     </div>

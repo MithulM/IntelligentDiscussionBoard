@@ -1,18 +1,17 @@
 import "./styles/SignPage.css"
-import Cookies from "js-cookie";
 import { useNavigate, Link } from "react-router-dom"
-import { useRef, useContext } from "react"
+import { useRef } from "react"
 import { postAPI } from "./apicalls";
-import AuthContext from "./context/AuthProvider";
+import useAuth from "./hooks/useAuth";
 
 function SigninPage() {
-
-    const { setAuth } = useContext(AuthContext);
     const navigate = useNavigate()
     const nameRef = useRef(null);
     const passwordRef = useRef(null);
 
     const submitAction = async (event) => {
+
+        const { setAuth } = useAuth();
         event.preventDefault();
         const user = nameRef.current.value;
         const pwd = passwordRef.current.value;

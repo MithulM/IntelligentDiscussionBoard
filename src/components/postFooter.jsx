@@ -1,6 +1,6 @@
-import ModalButton from "./ModalButton";
+import ModalButton from "../ModalButton";
 import { useState } from "react";
-import { deleteAPI } from "./apicalls";
+import { deleteAPI } from "../apicalls";
 import { useNavigate } from "react-router-dom";
 
 function PostFooter({ postID }) {

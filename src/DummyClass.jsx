@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './styles/DummyClass.css';
-import ClassPosts from './ClassPosts'
+import ClassPosts from './components/ClassPosts'
 import ModalButton from './ModalButton';
 import { getAPI } from './apicalls'
 

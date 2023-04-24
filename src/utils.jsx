@@ -1,14 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
-export function SigninRoute({ authed, Component }) {
-    return authed ? (
-        <Component />
-    ) : (
-        <Navigate to="/signin" />
-    );
-}
-
 export const randCont = (min, max) => {
     const length = Math.floor(Math.random() * (max - min + 1)) + min;
     const characters = 'abcdefghijklmnopqrstuvwxyz      ';

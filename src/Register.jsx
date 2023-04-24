@@ -37,7 +37,7 @@ const Register = () => {
         <div className="signContainer">
             <section className="sign" onSubmit={submitAction}>
                 <h1 className="heading">Register</h1>
-                <form className="signin-form">
+                <form>
                     <label htmlFor="username">Username:</label>
                     <input
                         type="text"
