@@ -9,11 +9,11 @@ function FancyButton({ to, menuTab }) {
     };
 
     return (
-        <button class="learn-more" onClick={handleClick}>
-            <span class="circle" aria-hidden="true">
-                <span class="icon arrow"></span>
+        <button className="learn-more" onClick={handleClick}>
+            <span className="circle" aria-hidden="true">
+                <span className="icon arrow"></span>
             </span>
-            <span class="button-text">{menuTab}</span>
+            <span className="button-text">{menuTab}</span>
         </button>
     );
 }

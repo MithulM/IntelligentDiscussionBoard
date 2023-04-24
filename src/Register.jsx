@@ -12,12 +12,12 @@ const Register = () => {
     const passwordRef = useRef(null);
     const passwordMatchRef = useRef(null);
 
-    const submitAction = (event) => {
+    const submitAction = async (event) => {
         event.preventDefault();
         if (passwordRef.current.value !== passwordMatchRef.current.value) {
             setErrorMessage("Passwords do not match");
         } else {
-            postAPI("register", {
+            const response = await postAPI("register", {
                 username: nameRef.current.value,
                 email: emailRef.current.value,
                 password: passwordRef.current.value,
@@ -25,6 +25,9 @@ const Register = () => {
                 headers: { "Content-Type": 'application/json' },
                 withCreedentials: true
             });
+            const accessToken = response?.data?.access_token;
+            const roles = response?.data?.roles;
+            setAuth({ user, pwd, roles, accessToken })
             navigate("/");
         }
     }

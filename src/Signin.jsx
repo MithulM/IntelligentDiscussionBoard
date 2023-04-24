@@ -1,19 +1,35 @@
 import "./styles/SignPage.css"
 import Cookies from "js-cookie";
 import { useNavigate, Link } from "react-router-dom"
-import { useRef } from "react"
+import { useRef, useContext } from "react"
+import { postAPI } from "./apicalls";
+import AuthContext from "./context/AuthProvider";
 
 function SigninPage() {
 
+    const { setAuth } = useContext(AuthContext);
     const navigate = useNavigate()
     const nameRef = useRef(null);
     const passwordRef = useRef(null);
 
-    const submitAction = (event) => {
+    const submitAction = async (event) => {
         event.preventDefault();
-        Cookies.set("name", nameRef.current.value);
-        Cookies.set("password", passwordRef.current.value);
-        return navigate("/")
+        const user = nameRef.current.value;
+        const pwd = passwordRef.current.value;
+        const response = await postAPI("auth/login", {
+            username: user,
+            password: pwd,
+        }, {
+            headers: { "Content-Type": 'application/json' },
+            withCreedentials: true
+        });
+        const accessToken = response?.data?.access_token;
+        const roles = response?.data?.roles;
+        setAuth({ user, pwd, roles, accessToken })
+        // Cookies.set("accessToken", response?.data);
+        // Cookies.set("name", nameRef.current.value);
+        // Cookies.set("password", passwordRef.current.value);
+        navigate("/");
     }
 
     return (
@@ -39,7 +55,7 @@ function SigninPage() {
                         placeholder="Enter your password"
                         ref={passwordRef}
                     />
-                    <Link to="/register">Already have an account?</Link>
+                    <Link to="/register">Need an Account?</Link>
                     <button type="submit">Sign in</button>
                 </form>
             </section>

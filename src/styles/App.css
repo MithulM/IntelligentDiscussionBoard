@@ -1,16 +1,6 @@
 #root {
   height: 100vh;
   width: 100vw;
-  --gapY: 20px;
-  --navBarSize: 200px;
-  --dark1: #1e1e1e;
-  --dark2: #252526;
-  --dark3: #2d2d30;
-  --dark4: #3e3e42;
-  --UTDOrange: #E87500;
-  --UTDGreen1: #154734;
-  --UTDGreen2: #1d5f3c;
-  --text1: #f1f1f1;
 }
 
 p,
@@ -23,6 +13,16 @@ div {
 }
 
 * {
+  --gapY: 20px;
+  --navBarSize: 200px;
+  --dark1: #1e1e1e;
+  --dark2: #252526;
+  --dark3: #2d2d30;
+  --dark4: #3e3e42;
+  --UTDOrange: #E87500;
+  --UTDGreen1: #154734;
+  --UTDGreen2: #1d5f3c;
+  --text1: #f1f1f1;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -48,5 +48,4 @@ body {
   width: 100%;
   height: 100%;
   overflow-x: hidden;
-  box-sizing: border-box;
 }
