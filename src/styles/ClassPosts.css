@@ -1,15 +1,6 @@
-p,
-Link,
-h1,
-h2,
-span,
-div {
-  color: #f1f1f1;
-}
-
 .classPosts {
   height: 100%;
-  background-color: #1f1f1f;
+  background-color: var(--dark2);
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -25,7 +16,7 @@ div {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  background-color: #154734;
+  background-color: var(--UTDGreen1);
   padding: 10px;
   border-radius: 20px;
   box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.8);
@@ -33,7 +24,7 @@ div {
 }
 
 .post:hover {
-  background-color: #1d5f3c;
+  background-color: var(--UTDGreen2);
   box-shadow: 20px var(--gapY) 30px 2px rgba(0, 0, 0, 0.8);
   transform: translateY(calc(var(--gapY) / -2));
 }
@@ -41,7 +32,7 @@ div {
 .classTitle {
   position: sticky;
   top: 0;
-  background-color: #1d5f3c;
+  background-color: var(--UTDGreen2);
   padding: 10px;
   margin: 0;
   font-size: 24px;

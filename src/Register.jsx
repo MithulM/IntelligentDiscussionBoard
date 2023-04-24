@@ -1,76 +1,83 @@
-import { useRef, useState, useEffect } from "react";
-import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
-
-const USER_REGEX = /^[a-zA-Z][a-zA_Z0-9-_]{3,23}$/;
-const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-
+import { useRef, useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { postAPI } from "./apicalls";
+import "./styles/LogPage.css"
 
 const Register = () => {
-    const userID = useRef()
-    const errRef = useRef();
+    const navigate = useNavigate()
 
-    const [user, setUser] = useState("");
-    const [validName, setValidName] = useState(false);
-    const [userFocus, setUserFocus] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+    const nameRef = useRef(null);
+    const emailRef = useRef(null);
+    const passwordRef = useRef(null);
+    const passwordMatchRef = useRef(null);
 
-    const [pwd, setPwd] = useState("");
-    const [validPwd, setValidPwd] = useState(false);
-    const [pwdFocus, setPwdFocus] = useState(false);
+    const submitAction = (event) => {
+        event.preventDefault();
+        if (passwordRef.current.value !== passwordMatchRef.current.value) {
+            setErrorMessage("Passwords do not match");
+        } else {
+            postAPI("register", {
+                username: nameRef.current.value,
+                email: emailRef.current.value,
+                password: passwordRef.current.value,
+            })
+            navigate("/");
+        }
+    }
 
-    const [matchPwd, setMatchPwd] = useState("");
-    const [validMatch, setValidMatch] = useState(false);
-    const [matchFocus, setMatchFocus] = useState(false);
-
-    const [errMsg, setErrMsg] = useState(false);
-    const [success, setSuccess] = useState(false);
-
-    useEffect(() => {
-        useForkRef.current.focus();
-    }, [])
-
-    useEffect(() => {
-        const result = USER_REGEX.test(user);
-        console.log(result);
-        console.log(user);
-        setValidName(result);
-    }, [user])
-
-    useEffect(() => {
-        const result = PWD_REGEX.test(pwd);
-        console.log(result);
-        console.log(pwd);
-        setValidPwd(result);
-        const match = pwd === matchPwd;
-        setValidMatch(match);
-    }, [user])
-
-    useEffect(() => {
-        setErrMsg("");
-    }, [user, pwd, matchPwd])
 
     return (
-        <section>
-            <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
-                {errMsg}
-            </p>
-            <h1>Register</h1>
-            <form>
-                <label htmlFor="username">
-                    Username:
-                </label>
-                <input
-                    type="text"
-                    id="username"
-                    ref={userRef}
-                    autoComplete="off"
-                    onChange={(e) => setUser(e.target.value)}
-                    required
-                    name="username"
-                    onFocus={() => setUserFocus(true)}
-                    onBlur={() => setUserFocus(false)}
-                />
-            </form>
-        </section>
+        <div className="logContainer">
+            <section className="log" onSubmit={submitAction}>
+                <h1 className="heading">Register</h1>
+                <form className="login-form">
+                    <label htmlFor="username">Username:</label>
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        autoComplete="off"
+                        placeholder="Enter your username"
+                        required
+                        ref={nameRef}
+                    />
+                    <label htmlFor="email">Email:</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        autoComplete="off"
+                        placeholder="Enter your email"
+                        required
+                        ref={emailRef}
+                    />
+                    <label htmlFor="password">Password:</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        autoComplete="off"
+                        placeholder="Enter your password"
+                        required
+                        ref={passwordRef}
+                    />
+                    <label htmlFor="passwordMatch">Confirm Password:</label>
+                    <input
+                        type="password"
+                        id="passwordMatch"
+                        name="passwordMatch"
+                        autoComplete="off"
+                        placeholder="Enter your password again"
+                        required
+                        ref={passwordMatchRef}
+                    />
+                    {errorMessage && <p className="error">{errorMessage}</p>}
+                    <Link to="/login">Already registered?</Link>
+                    <button type="submit">Register</button>
+                </form>
+            </section>
+        </div>
     )
 }
 

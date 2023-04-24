@@ -2,7 +2,7 @@
     position: fixed;
     width: var(--navBarSize);
     height: 100vh;
-    background-color: #E87500;
+    background-color: var(--UTDOrange);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,5 +21,12 @@
 
 .page {
     flex: 1;
-    margin-left: var(--navBarSize)
+    flex-shrink: 0;
+    margin-left: var(--navBarSize);
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    width: 100%;
 }

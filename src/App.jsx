@@ -1,9 +1,11 @@
 import HomePage from './HomePage.jsx'
 import DummyClass from './DummyClass.jsx'
 import CreatePost from './createPost.jsx'
-import { Routes, Route } from 'react-router-dom';
-import SinglePostPage from './SinglePostPage.jsx';
-import NavBar from './NavLayout.jsx';
+import { Routes, Route } from 'react-router-dom'
+import SinglePostPage from './SinglePostPage.jsx'
+import NavLayout from './NavLayout.jsx'
+import LoginPage from "./LoginPage.jsx"
+import Register from "./Register.jsx"
 import Cookies from 'js-cookie';
 import './styles/App.css'
 
@@ -25,9 +27,10 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar courseList={courseList} />
-      <div className='page'>
-        <Routes>
+      <Routes>
+        <Route path="/login" element={<LoginPage/>}/>
+        <Route path="/register" element={<Register/>}/>
+        <Route path="/" element={<NavLayout courseList={courseList} />}>
           <Route path="/" element={<HomePage />} />
           {courseList.map(courseName =>
             <Route key={courseName.id} path={"/" + courseName.class.toLowerCase().replace(/\s/g, '')}>
@@ -36,8 +39,8 @@ function App() {
             </Route>
           )}
           <Route path="/createpost" element={<CreatePost />} />
-        </Routes>
-      </div>
+        </Route>
+      </Routes>
     </div>
   )
 }

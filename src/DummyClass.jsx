@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './styles/DummyClass.css';
 import ClassPosts from './ClassPosts'
-import ModalButton from './ModaButton';
+import ModalButton from './ModalButton';
 import { Link } from 'react-router-dom'
 import { getAPI } from './apicalls'
 

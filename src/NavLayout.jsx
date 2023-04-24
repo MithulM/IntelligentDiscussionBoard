@@ -1,7 +1,8 @@
 import { useNavigate, Outlet } from "react-router-dom";
 import FancyButton from "./FancyButton.jsx";
+import "./styles/NavLayout.css"
 
-function NavBar({ courseList }) {
+function NavLayout({ courseList }) {
     const navigate = useNavigate();
 
     const logout = (event) => {
@@ -12,7 +13,7 @@ function NavBar({ courseList }) {
     }
 
     return (
-        <>
+        <div className="container">
             <div className="menu">
                 <ul>
                     <li>
@@ -29,8 +30,11 @@ function NavBar({ courseList }) {
                     </li>
                 </ul>
             </div>
-        </>
+            <div className="page">
+                <Outlet />
+            </div>
+        </div>
     )
 }
 
-export default NavBar;
+export default NavLayout;

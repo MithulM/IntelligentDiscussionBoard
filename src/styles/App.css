@@ -3,11 +3,29 @@
   width: 100vw;
   --gapY: 20px;
   --navBarSize: 200px;
+  --dark1: #1e1e1e;
+  --dark2: #252526;
+  --dark3: #2d2d30;
+  --dark4: #3e3e42;
+  --UTDOrange: #E87500;
+  --UTDGreen1: #154734;
+  --UTDGreen2: #1d5f3c;
+  --text1: #f1f1f1;
+}
+
+p,
+Link,
+h1,
+h2,
+span,
+div {
+  color: var(--text1);
 }
 
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   border: 0;
   font-size: 100%;
   font: inherit;
@@ -28,32 +46,7 @@ body {
 .App {
   display: flex;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   overflow-x: hidden;
-}
-
-.menu {
-  position: fixed;
-  width: var(--navBarSize);
-  height: 100vh;
-  background-color: #E87500;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-
-.menu>ul>li {
-  display: inline-block;
-  width: 100%;
-  height: 30%;
-  margin: 10% 0%;
-  text-align: center;
-  font-size: 1.5em;
-  list-style: none;
-}
-
-.page {
-  flex: 1;
-  margin-left: var(--navBarSize)
+  box-sizing: border-box;
 }
