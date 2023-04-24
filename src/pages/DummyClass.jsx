@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './styles/DummyClass.css';
-import ClassPosts from './components/ClassPosts'
-import ModalButton from './ModalButton';
-import { getAPI } from './apicalls'
+import '../styles/DummyClass.css';
+import ClassPosts from '../components/ClassPosts'
+import ModalButton from '../components/ModalButton';
+import { getAPI, postAPI } from '../apicalls'
+import useAuth from '../hooks/useAuth';
 
 function DummyClass({ courseName, classID }) {
     const search = useRef("");
@@ -10,6 +11,8 @@ function DummyClass({ courseName, classID }) {
     const [searchQ, setSearchQ] = useState([]);
     const [isCreate, setCreate] = useState(false);
     const postsPerPage = 100;
+
+    const {auth, setAuth} = useAuth()
 
     useEffect(() => {
         getAPI("get_all_posts", [classID, postsPerPage], setPosts);
@@ -31,11 +34,42 @@ function DummyClass({ courseName, classID }) {
         }
     }
 
+    const title = useRef(null);
+    const content = useRef(null);
+    const user_id = 3
+
+    const createPost = async () => {
+        const response = 
+        await postAPI("create_post", {
+             user_id: user_id,
+             course_id: classID, 
+             title: title.current.value, 
+             content: content.current.value}, 
+             {
+                headers: { "Content-Type": 'application/json',
+                "Authorization":`Bearer ${auth.accessToken}`},
+                withCredentials: true,
+                
+            });
+            console.log(response)
+    }
+
     return (
         <React.Fragment>
             <div className="classPage">
                 <div className="search">
-                    <ModalButton title="Create Post" className="classCreatePostBtn" isOpen={isCreate} buttonName="Create post" setFunc={setCreate}>
+                    <ModalButton title="Create Post" className="classCreatePostBtn" isOpen={isCreate} buttonName="Create post" setFunc={setCreate} onConfirm={createPost}>
+                        <form>
+                            <label htmlFor="title">Title:</label>
+                            <input type="text" id="title" ref={title} style={{ width: "100%" }} />
+                            <br />
+                            <label htmlFor="content">Content:</label>
+                            <textarea
+                                id="content"
+                                ref={content}
+                                style={{ width: "100%", height: "200px" }}
+                            />
+                        </form>
                     </ModalButton>
                     <input className="searchBar"
                         ref={search}

@@ -1,17 +1,17 @@
-import "./styles/SignPage.css"
-import { useNavigate, Link } from "react-router-dom"
+import "../styles/SignPage.css"
+import { useNavigate, Link, useLocation } from "react-router-dom"
 import { useRef } from "react"
-import { postAPI } from "./apicalls";
-import useAuth from "./hooks/useAuth";
+import { postAPI } from "../apicalls";
+import useAuth from "../hooks/useAuth";
 
 function SigninPage() {
     const navigate = useNavigate()
     const nameRef = useRef(null);
     const passwordRef = useRef(null);
+    const { auth, setAuth } = useAuth();
 
     const submitAction = async (event) => {
 
-        const { setAuth } = useAuth();
         event.preventDefault();
         const user = nameRef.current.value;
         const pwd = passwordRef.current.value;
@@ -20,14 +20,15 @@ function SigninPage() {
             password: pwd,
         }, {
             headers: { "Content-Type": 'application/json' },
-            withCreedentials: true
+            withCredentials: true
         });
-        const accessToken = response?.data?.access_token;
-        const roles = response?.data?.roles;
-        setAuth({ user, pwd, roles, accessToken })
-        // Cookies.set("accessToken", response?.data);
-        // Cookies.set("name", nameRef.current.value);
-        // Cookies.set("password", passwordRef.current.value);
+        console.log("Data:", response);
+        const accessToken = response?.access_token;
+        const role = response?.role;
+        const email = response?.email;
+        const user_id = response?.user_id;
+        setAuth({ user, email, pwd, user_id, role, accessToken });
+        console.log("Auth: ", auth);
         navigate("/");
     }
 

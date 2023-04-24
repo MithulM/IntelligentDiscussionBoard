@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom"
-import { getAPI, deleteAPI } from './apicalls.jsx';
+import { getAPI, deleteAPI } from '../apicalls.jsx';
 import { useNavigate } from 'react-router-dom';
-import './styles/SinglePostPage.css';
-import { getTimeAgoString } from './utils.jsx';
-import Comment from './components/Comment.jsx';
-import PostFooter from "./components/postFooter.jsx"
+import '../styles/SinglePostPage.css';
+import { getTimeAgoString } from '../utils.jsx';
+import Comment from '../components/Comment.jsx';
+import PostFooter from "../components/postFooter.jsx"
 
 function SinglePostPage() {
     const [post, setPost] = useState({});

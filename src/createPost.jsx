@@ -10,7 +10,7 @@ function CreatePost() {
   const [courseId, setCourseId] = useState("2");
   const [userId, setUserId] = useState("3");
 
-  async function submitPost(event) {
+  const submitPost = async (event) => {
     event.preventDefault();
     console.log("User Id: " + userId);
     console.log("Course Id: " + courseId);
