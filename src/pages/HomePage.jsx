@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import './styles/HomePage.css'
-import Cookies from 'js-cookie';
-import ClassPosts from './components/ClassPosts';
-import { getAPI } from './apicalls'
+import '../styles/HomePage.css'
+import ClassPosts from '../components/ClassPosts';
+import { getAPI } from '../apicalls'
 
 function HomePage() {
 

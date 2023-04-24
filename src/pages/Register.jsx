@@ -1,10 +1,12 @@
 import { useRef, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { postAPI } from "./apicalls";
-import "./styles/SignPage.css"
+import { postAPI } from "../apicalls";
+import "../styles/SignPage.css"
+import useAuth from "../hooks/useAuth";
 
 const Register = () => {
     const navigate = useNavigate()
+    const { auth, setAuth } = useAuth();
 
     const [errorMessage, setErrorMessage] = useState("");
     const nameRef = useRef(null);
@@ -17,16 +19,17 @@ const Register = () => {
         if (passwordRef.current.value !== passwordMatchRef.current.value) {
             setErrorMessage("Passwords do not match");
         } else {
-            const response = await postAPI("register", {
+            const response = await postAPI("auth/register", {
                 username: nameRef.current.value,
                 email: emailRef.current.value,
                 password: passwordRef.current.value,
             }, {
                 headers: { "Content-Type": 'application/json' },
-                withCreedentials: true
+                withCredentials: true
             });
             const accessToken = response?.data?.access_token;
             const roles = response?.data?.roles;
+            console.log("Here")
             setAuth({ user, pwd, roles, accessToken })
             navigate("/");
         }

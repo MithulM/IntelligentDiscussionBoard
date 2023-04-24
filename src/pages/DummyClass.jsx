@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './styles/DummyClass.css';
-import ClassPosts from './components/ClassPosts'
-import ModalButton from './ModalButton';
-import { getAPI } from './apicalls'
+import '../styles/DummyClass.css';
+import ClassPosts from '../components/ClassPosts'
+import ModalButton from '../components/ModalButton';
+import { getAPI } from '../apicalls'
 
 function DummyClass({ courseName, classID }) {
     const search = useRef("");
