@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './createPost.css';
-import ClassPosts from './ClassPosts';
+import './styles/createPost.css';
+import ClassPosts from './components/ClassPosts';
 import getRandPosts from './utils';
 import { getAPI, postAPI } from './apicalls.jsx'
 

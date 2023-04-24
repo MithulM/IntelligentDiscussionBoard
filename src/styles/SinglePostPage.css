@@ -1,0 +1,143 @@
+.single-post-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #252222;
+}
+
+.wrap-everything {
+  background-color: #1a1a1a;
+  width: 90%;
+}
+
+.post-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  max-width: 800px;
+  width: 100%;
+}
+
+.post-body-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid #595c5f;
+  border-radius: 4px;
+  background-color: #cfa5a5;
+  max-width: 800px;
+  width: 100%;
+}
+
+.onePostInfo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #a5a5a5;
+}
+
+.onePostInfo > * {
+  margin-right: 10px;
+}
+
+.post-course-title {
+  font-weight: bold;
+  color: #0576cc;
+}
+
+
+.post-body-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.post-body-text {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.comment-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 20px;
+  max-width: 800px;
+  width: 100%;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.comment {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #c6cbd1;
+  border-radius: 4px;
+  background-color: #f5f8fa;
+  width: 100%;
+}
+
+.comment-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #a5a5a5;
+}
+
+.comment-header > * {
+  margin-right: 10px;
+}
+
+.comment-author {
+  font-weight: bold;
+}
+
+.comment-time {
+  margin-left: auto;
+}
+
+.comment-body {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.comment-actions {
+  display: flex;
+  align-items: center;
+}
+
+.comment-action {
+  cursor: pointer;
+  font-size: 14px;
+  padding: 6px 12px;
+  margin-right: 10px;
+  border-radius: 4px;
+}
+
+.comment-action:hover {
+  background-color: #e5e5e5;
+}
+
+.comment-reply {
+  margin-left: auto;
+  color: #0079d3;
+  font-weight: bold;
+}
