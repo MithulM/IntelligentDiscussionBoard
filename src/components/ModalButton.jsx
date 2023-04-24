@@ -1,5 +1,4 @@
-import { Children } from "react";
-import Modal from "./components/Modal";
+import Modal from "./Modal";
 
 function ModalButton({ title, className, isOpen, children, setFunc, buttonName, onConfirm }) {
     return (

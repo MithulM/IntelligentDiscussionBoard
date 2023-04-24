@@ -1,6 +1,3 @@
-import { Navigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
-
 export const randCont = (min, max) => {
     const length = Math.floor(Math.random() * (max - min + 1)) + min;
     const characters = 'abcdefghijklmnopqrstuvwxyz      ';
@@ -79,12 +76,6 @@ export function getTimeAgoString(timestamp) {
     } else {
         return `${diffInYears} years ago`;
     }
-}
-
-export function checkAuth() {
-    const auth = Cookies.get("name") !== undefined && Cookies.get("password") !== undefined;
-    console.log("auth", auth)
-    return (auth);
 }
 
 export default getRandPosts;

@@ -1,14 +1,16 @@
 import { useNavigate, Outlet } from "react-router-dom";
 import FancyButton from "./FancyButton.jsx";
 import "../styles/NavLayout.css"
+import useAuth from "../hooks/useAuth.jsx";
 
 function NavLayout({ courseList }) {
     const navigate = useNavigate();
+    const { auth, setAuth } = useAuth();
 
     const signout = (event) => {
         event.preventDefault();
-        Cookies.remove("name");
-        Cookies.remove("password");
+        setAuth({});
+        console.log("Auth: ", auth);
         navigate("/signin");
     }
 
@@ -26,7 +28,12 @@ function NavLayout({ courseList }) {
                             </li>)
                     }
                     <li>
-                        <FancyButton to="/signin" menuTab="Signout" onClick={signout} />
+                        <button onClick={signout} >
+                            <span className="circle" aria-hidden="true">
+                                <span className="icon arrow"></span>
+                            </span>
+                            <span className="button-text">Sign Out</span>
+                        </button>
                     </li>
                 </ul>
             </div>
