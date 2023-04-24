@@ -1,11 +1,11 @@
 import { Navigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
-export function LoginRoute({ authed, Component }) {
+export function SigninRoute({ authed, Component }) {
     return authed ? (
         <Component />
     ) : (
-        <Navigate to="/login" />
+        <Navigate to="/signin" />
     );
 }
 

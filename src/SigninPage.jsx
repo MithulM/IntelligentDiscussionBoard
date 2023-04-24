@@ -1,9 +1,9 @@
-import "./styles/LogPage.css"
+import "./styles/SignPage.css"
 import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import { useRef } from "react"
 
-function LoginPage() {
+function SigninPage() {
 
     const navigate = useNavigate()
     const nameRef = useRef(null);
@@ -17,10 +17,10 @@ function LoginPage() {
     }
 
     return (
-        <div className="logContainer">
-            <section className="log">
-                <h1 className="heading">Login</h1>
-                <form onSubmit={submitAction} className="login-form">
+        <div className="signContainer">
+            <section className="sign">
+                <h1 className="heading">Sign in</h1>
+                <form onSubmit={submitAction} className="signin-form">
                     <label htmlFor="username">Username</label>
                     <input
                         type="text"
@@ -39,11 +39,12 @@ function LoginPage() {
                         placeholder="Enter your password"
                         ref={passwordRef}
                     />
-                    <button type="submit">Login</button>
+                    <Link to="/register">Already have an account?</Link>
+                    <button type="submit">Sign in</button>
                 </form>
             </section>
         </div>
     );
 }
 
-export default LoginPage;
+export default SigninPage;

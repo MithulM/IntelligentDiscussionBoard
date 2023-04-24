@@ -1,4 +1,4 @@
-.logContainer {
+.signContainer {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -6,7 +6,7 @@
     width: 100%;
 }
 
-.log {
+.sign {
     display: flex;
     flex-direction: column;
     width: 400px;
@@ -21,22 +21,22 @@
     margin: 20px;
 }
 
-.login-form {
+.signin-form {
     width: 100%;
     margin: 0;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-.login-form label {
+.signin-form label {
     display: block;
     margin-bottom: 5px;
     color: var(--text1);
 }
 
-.login-form input[type="text"],
-.login-form input[type="email"],
-.login-form input[type="password"] {
+.signin-form input[type="text"],
+.signin-form input[type="email"],
+.signin-form input[type="password"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
@@ -45,7 +45,7 @@
     box-sizing: border-box;
 }
 
-.login-form button[type="submit"] {
+.signin-form button[type="submit"] {
     display: block;
     width: 100%;
     padding: 10px;
@@ -57,6 +57,6 @@
     transition: background-color 0.3s ease;
 }
 
-.login-form button[type="submit"]:hover {
+.signin-form button[type="submit"]:hover {
     background-color: var(--UTDGreen2);
 }

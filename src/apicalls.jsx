@@ -24,10 +24,10 @@ export async function getAPI(apiCall, params, setVar) {
     }
 }
 
-export async function postAPI(apiCall, params) {
+export async function postAPI(apiCall, params, headers) {
     try {
-        const response = await axios.post(serverURL + "/" + apiCall, params);
-        console.log(response.data);
+        const response = await axios.post(serverURL + "/" + apiCall, params, headers);
+        console.log("Post: ", response.data);
         return response.data;
     } catch (err) {
         if (err.response) {

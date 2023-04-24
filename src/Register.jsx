@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { postAPI } from "./apicalls";
-import "./styles/LogPage.css"
+import "./styles/SignPage.css"
 
 const Register = () => {
     const navigate = useNavigate()
@@ -21,17 +21,20 @@ const Register = () => {
                 username: nameRef.current.value,
                 email: emailRef.current.value,
                 password: passwordRef.current.value,
-            })
+            }, {
+                headers: { "Content-Type": 'application/json' },
+                withCreedentials: true
+            });
             navigate("/");
         }
     }
 
 
     return (
-        <div className="logContainer">
-            <section className="log" onSubmit={submitAction}>
+        <div className="signContainer">
+            <section className="sign" onSubmit={submitAction}>
                 <h1 className="heading">Register</h1>
-                <form className="login-form">
+                <form className="signin-form">
                     <label htmlFor="username">Username:</label>
                     <input
                         type="text"
@@ -73,7 +76,7 @@ const Register = () => {
                         ref={passwordMatchRef}
                     />
                     {errorMessage && <p className="error">{errorMessage}</p>}
-                    <Link to="/login">Already registered?</Link>
+                    <Link to="/signin">Already registered?</Link>
                     <button type="submit">Register</button>
                 </form>
             </section>

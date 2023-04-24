@@ -5,11 +5,11 @@ import "./styles/NavLayout.css"
 function NavLayout({ courseList }) {
     const navigate = useNavigate();
 
-    const logout = (event) => {
+    const signout = (event) => {
         event.preventDefault();
         Cookies.remove("name");
         Cookies.remove("password");
-        navigate("/login");
+        navigate("/signin");
     }
 
     return (
@@ -26,7 +26,7 @@ function NavLayout({ courseList }) {
                             </li>)
                     }
                     <li>
-                        <FancyButton to="/login" menuTab="Logout" onClick={logout} />
+                        <FancyButton to="/signin" menuTab="Signout" onClick={signout} />
                     </li>
                 </ul>
             </div>

@@ -4,7 +4,7 @@ import CreatePost from './createPost.jsx'
 import { Routes, Route } from 'react-router-dom'
 import SinglePostPage from './SinglePostPage.jsx'
 import NavLayout from './NavLayout.jsx'
-import LoginPage from "./LoginPage.jsx"
+import SignPage from "./SigninPage.jsx"
 import Register from "./Register.jsx"
 import Cookies from 'js-cookie';
 import './styles/App.css'
@@ -28,7 +28,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/login" element={<LoginPage/>}/>
+        <Route path="/signin" element={<SignPage/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/" element={<NavLayout courseList={courseList} />}>
           <Route path="/" element={<HomePage />} />
