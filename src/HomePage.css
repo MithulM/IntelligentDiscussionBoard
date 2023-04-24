@@ -1,13 +1,14 @@
 .main {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 50%);
+    grid-template-rows: repeat(2, 48%);
     grid-gap: var(--gapY);
     flex: 1;
     padding: 10px;
-    
 }
 
 .HomePagePosts {
     background-color: #1f1f1f;
+    height: 50vh;
+    overflow: auto;
 }
