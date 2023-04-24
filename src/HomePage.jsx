@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './HomePage.css'
+import './styles/HomePage.css'
 import Cookies from 'js-cookie';
 import ClassPosts from './ClassPosts';
 import { getAPI } from './apicalls'

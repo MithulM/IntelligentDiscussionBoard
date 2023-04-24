@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom"
 import { getAPI, deleteAPI } from './apicalls.jsx';
 import { useNavigate } from 'react-router-dom';
-import './SinglePostPage.css';
+import './styles/SinglePostPage.css';
 import { getTimeAgoString } from './utils.jsx';
 import Comment from './Comment.jsx';
 import PostFooter from "./postFooter.jsx"
@@ -31,7 +31,7 @@ function SinglePostPage() {
                 <h2 className="post-body-title">{post.post_title}</h2>
                 <div className="post-body-text">{post.post_content}</div>
                 <br></br>
-                <PostFooter />
+                <PostFooter post_id={post.post_id} />
             </div>
             <div className="replies">
                 {comments && <span className="section-title">Replies:</span>}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './DummyClass.css';
+import './styles/DummyClass.css';
 import ClassPosts from './ClassPosts'
-import getRandPosts from './utils.jsx'
+import ModalButton from './ModaButton';
 import { Link } from 'react-router-dom'
 import { getAPI } from './apicalls'
 
@@ -28,23 +28,23 @@ function DummyClass({ courseName, classID }) {
         <React.Fragment>
             <div className="classPage">
                 <div className="search">
-                        <input className="searchBar"
-                            ref={search}
-                            type="search"
-                            placeholder="Search"
-                            rows="1"
-                            cols="500"
-                        />
-                        <button onClick={(event) => setSearch(event, classID)}className="searchButton" type="submit">search</button>
+                    <input className="searchBar"
+                        ref={search}
+                        type="search"
+                        placeholder="Search"
+                        rows="1"
+                        cols="500"
+                    />
+                    <button onClick={(event) => setSearch(event, classID)} className="searchButton" type="submit">search</button>
                 </div>
                 <div className="postsList">
                     <div className="posts">
                         <ClassPosts title={courseName} postList={posts} />
                     </div>
                     <button className="classCreatePostBtn">
-                        <Link to="/createpost">
+                        <ModalButton to="/createpost">
                             Create Post
-                        </Link>
+                        </ModalButton>
                     </button>
                 </div>
             </div>

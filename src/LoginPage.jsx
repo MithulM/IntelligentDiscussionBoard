@@ -1,4 +1,4 @@
-import "./LoginPage.css"
+import "./styles/LoginPage.css"
 import Cookies from "js-cookie";
 import { Navigate, useNavigate } from "react-router-dom"
 import { useRef } from "react"

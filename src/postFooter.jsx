@@ -1,7 +1,10 @@
 import ModalButton from "./ModaButton";
 import { useState } from "react";
+import { deleteAPI } from "./apicalls";
+import { useNavigate } from "react-router-dom";
 
-function PostFooter() {
+function PostFooter({ postID }) {
+    const navigate = useNavigate();
     const [isDelete, setDelete] = useState(false);
     const [isReply, setReply] = useState(false);
     const [isEdit, setEdit] = useState(false);
@@ -9,8 +12,7 @@ function PostFooter() {
     const confirmDelete = () => {
         deleteAPI("delete_post", postID);
         setDelete(false);
-        console.log("/" + post.course.course_number);
-        navigate("/" + post.course.course_number.toLowerCase().replace(/\s/g, ''));
+        navigate(-1);
     }
 
     return (

@@ -1,36 +1,13 @@
 import HomePage from './HomePage.jsx'
 import DummyClass from './DummyClass.jsx'
 import CreatePost from './createPost.jsx'
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import SinglePostPage from './SinglePostPage.jsx';
-import { useNavigate } from 'react-router-dom';
+import NavBar from './NavLayout.jsx';
 import Cookies from 'js-cookie';
-import './App.css'
-
-function FancyButton({ menuTab, onClick }) {
-  return (
-    <button className="learn-more" onClick={onClick}>
-      <span className="circle">
-        <span className="icon arrow"></span>
-      </span>
-      <span className="button-text">
-        {menuTab}
-      </span>
-    </button>
-  )
-}
+import './styles/App.css'
 
 function App() {
-
-  const navigate = useNavigate();
-
-  const logout = (event) => {
-    event.preventDefault();
-    Cookies.remove("name");
-    Cookies.remove("password");
-    navigate("/login");
-  }
-
   const courseList = [
     {
       id: 1,
@@ -48,34 +25,19 @@ function App() {
 
   return (
     <div className="App">
-      <div className="menu">
-        <ul>
-          <li>
-            <FancyButton to="/" menuTab="Home" onClick={() => navigate("/")} />
-          </li>
-          {
-            courseList.map(courseName =>
-              <li key={courseName.id}>
-                <FancyButton to={"/" + courseName.class.toLowerCase().replace(/\s/g, '')} menuTab={courseName.class} onClick={() => navigate("/" + courseName.class.toLowerCase().replace(/\s/g, ''))} />
-              </li>)
-          }
-          <li>
-            <FancyButton to="/login" menuTab="Logout" onClick={logout} />
-          </li>
-        </ul>
+      <NavBar courseList={courseList} />
+      <div className='page'>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          {courseList.map(courseName =>
+            <Route key={courseName.id} path={"/" + courseName.class.toLowerCase().replace(/\s/g, '')}>
+              <Route index element={<DummyClass courseName={courseName.class} classID={courseName.id} />} />
+              <Route path=":postID" element={<SinglePostPage courseName={courseName.class} />} />
+            </Route>
+          )}
+          <Route path="/createpost" element={<CreatePost />} />
+        </Routes>
       </div>
-        <div className='page'>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            {courseList.map(courseName =>
-              <Route key={courseName.id} path={"/" + courseName.class.toLowerCase().replace(/\s/g, '')}>
-                <Route index element={<DummyClass courseName={courseName.class} classID={courseName.id}/>} />
-                <Route path=":postID" element={<SinglePostPage courseName={courseName.class} />} />
-              </Route>
-            )}
-            <Route path="/createpost" element={<CreatePost />} />
-          </Routes>
-        </div>
     </div>
   )
 }
