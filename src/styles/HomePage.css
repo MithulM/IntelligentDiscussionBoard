@@ -1,17 +1,75 @@
 .main {
-    display: grid;
-    box-sizing: border-box;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 50%);
-    background: linear-gradient(to bottom, var(--dark3) 0%, #1f1f1f 100%);
-    flex: 1;
-  }
-  
-  .HomePagePosts {
-    border-radius: 20px;
-    transform: scale(95%);
-    background-color: #1f1f1f;
-    height: 50vh;
-    overflow: auto;
-  }
-  
+  flex: 1;
+}
+
+.HomePagePosts {
+  border-radius: 20px;
+  transform: scale(95%);
+  height: 50vh;
+  overflow: auto;
+}
+
+.container-fluid {
+  background-color: var(--dark3);
+  padding: 0;
+  margin: 0;
+}
+
+.jumbotron {
+  background-color: var(--dark3);
+  padding: 2rem 1rem;
+  margin: 0;
+  border-radius: 0;
+  text-align: center;
+}
+
+.jumbotron h1 {
+  color: var(--UTDOrange);
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.jumbotron p {
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 0;
+}
+
+.post-block {
+  background-color: #1f1f1f;
+  border-radius: 20px;
+  margin: 20px 0;
+  padding: 20px;
+}
+
+.post-block:hover {
+  background-color: var(--UTDGreen2);
+  box-shadow: 20px var(--gapY) 30px 2px rgba(0, 0, 0, 0.8);
+  transform: translateY(calc(var(--gapY) / -2));
+}
+
+.post-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.post-author {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.post-date {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.post-content {
+  font-size: 16px;
+  text-align: justify;
+  word-wrap: normal;
+  margin-bottom: 10px;
+}
+
+.post-comments {
+  font-size: 16px;
+}

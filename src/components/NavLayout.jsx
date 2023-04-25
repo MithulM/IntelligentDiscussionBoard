@@ -5,6 +5,7 @@ import FancyButton from "./FancyButton.jsx";
 import "../styles/NavLayout.css";
 import useAuth from "../hooks/useAuth.jsx";
 
+
 function NavLayout({ courseList }) {
   const navigate = useNavigate();
   const { auth, setAuth } = useAuth();
