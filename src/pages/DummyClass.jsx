@@ -12,7 +12,7 @@ function DummyClass({ courseName, classID }) {
     const [isCreate, setCreate] = useState(false);
     const postsPerPage = 100;
 
-    const {auth, setAuth} = useAuth()
+    const { auth, setAuth } = useAuth()
 
     useEffect(() => {
         getAPI("get_all_posts", [classID, postsPerPage], setPosts);
@@ -39,19 +39,22 @@ function DummyClass({ courseName, classID }) {
     const user_id = 3
 
     const createPost = async () => {
-        const response = 
-        await postAPI("create_post", {
-             user_id: user_id,
-             course_id: classID, 
-             title: title.current.value, 
-             content: content.current.value}, 
-             {
-                headers: { "Content-Type": 'application/json',
-                "Authorization":`Bearer ${auth.accessToken}`},
+        const response =
+            await postAPI("create_post", {
+                user_id: user_id,
+                course_id: classID,
+                title: title.current.value,
+                content: content.current.value
+            }, {
+                headers: {
+                    "Content-Type": 'application/json',
+                    "Authorization": `Bearer ${auth.accessToken}`
+                },
                 withCredentials: true,
-                
+
             });
-            console.log(response)
+        getAPI("get_all_posts", [classID, postsPerPage], setPosts);
+        console.log(response)
     }
 
     return (

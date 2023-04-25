@@ -1,7 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import HomePage from './pages/HomePage.jsx'
 import DummyClass from './pages/DummyClass.jsx'
-import CreatePost from './createPost.jsx'
 import SinglePostPage from './pages/SinglePostPage.jsx'
 import RequireAuth from './components/RequireAuth.jsx'
 import NavLayout from './components/NavLayout.jsx'
@@ -46,7 +45,6 @@ function App() {
                   <Route path=":postID" element={<SinglePostPage courseName={courseName.class} />} />
                 </Route>
               )}
-              <Route path="/createpost" element={<CreatePost />} />
             </Route>
           </Route>
           <Route path="*" element={<Missing />} />
