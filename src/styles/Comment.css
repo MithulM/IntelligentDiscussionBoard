@@ -10,25 +10,30 @@
     justify-content: space-around;
 }
 
+.threadLine {
+    height: 100px;
+    width: 2px;
+    margin-left: 10px;
+    margin-right: 50px;
+    background-color: var(--text1);
+}
 .commentBlock {
     border-radius: 20px;
     padding: 10px;
+    padding-top: 0;
 }
 
-.fullComments {
+.childComments {
     display: flex;
     flex-direction: column;
     border-radius: 20px;
-    margin-top: 10px;
     width: 100%;
 }
 
-.fullComments>div {
+.childComments>div {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    /* Change to align items to the left /
-    margin-left: 20px; / Add margin to shift comments to the left */
 }
 
 .post-header {
@@ -36,13 +41,11 @@
     flex-direction: row;
     align-items: center;
     width: 100%;
-    /* Add width to take up the entire width of the parent container */
 }
 
 .post-author {
     font-weight: bold;
     margin-right: 5px;
-    /* Add margin to separate the author from the date */
 }
 
 .post-date {
@@ -51,8 +54,4 @@
 
 .post-body {
     margin: 10px 0;
-}
-
-.commentBlock.depth {
-    margin-left: 20px;
 }
