@@ -2,6 +2,8 @@ import ModalButton from "./ModalButton";
 import { useState } from "react";
 import { deleteAPI } from "../apicalls";
 import { useNavigate } from "react-router-dom";
+import { faReply, faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function PostFooter({ postID }) {
     const navigate = useNavigate();
@@ -17,7 +19,7 @@ function PostFooter({ postID }) {
 
     return (
         <div className="modify">
-            <ModalButton title="Reply" className="ModifyPost" isOpen={isReply} buttonName="Reply" setFunc={setReply}>
+            <ModalButton title="Reply" className="ModifyPost" isOpen={isReply} buttonName={<FontAwesomeIcon icon={faReply} />} setFunc={setReply}>
                 <form className="comments-form">
                     <label className="comments-label">Leave a comment:</label>
                     <textarea
@@ -29,7 +31,7 @@ function PostFooter({ postID }) {
                     ></textarea>
                 </form>
             </ModalButton>
-            <ModalButton title="Edit Post" className="ModifyPost edit" isOpen={isEdit} buttonName="Edit" setFunc={setEdit}>
+            <ModalButton title="Edit Post" className="ModifyPost edit" isOpen={isEdit} buttonName={<FontAwesomeIcon icon={faEdit} />} setFunc={setEdit}>
                 <form className="edit-form">
                     <label className="edit-label">Edit your post: </label>
                     <textarea
@@ -41,11 +43,12 @@ function PostFooter({ postID }) {
                     ></textarea>
                 </form>
             </ModalButton>
-            <ModalButton isOpen={isDelete} title="Delete Post" className="ModifyPost delete" setFunc={setDelete} buttonName="Delete" onConfirm={confirmDelete}>
+            <ModalButton isOpen={isDelete} title="Delete Post" className="ModifyPost delete" setFunc={setDelete} buttonName={<FontAwesomeIcon icon={faTrashAlt} />} onConfirm={confirmDelete}>
                 Are you sure you want to delete this post?
             </ModalButton>
         </div>
     )
 }
+
 
 export default PostFooter;

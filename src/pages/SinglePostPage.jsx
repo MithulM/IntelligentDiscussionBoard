@@ -7,6 +7,7 @@ import { getTimeAgoString } from '../utils.jsx';
 import Comment from '../components/Comment.jsx';
 import PostFooter from "../components/postFooter.jsx"
 
+
 function SinglePostPage() {
     const [post, setPost] = useState({});
     const [comments, setComments] = useState([]);

@@ -30,3 +30,19 @@
     width: 100%;
   }
   
+  .signout-button {
+    width: 100%;
+    height: 30%;
+    margin: 7% 0%;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.signout-icon {
+    display: inline-block;
+    width: 80%;
+    height: 80%;
+    margin-right: 5%;
+    vertical-align: middle;
+}
