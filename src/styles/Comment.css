@@ -1,3 +1,15 @@
+.commentInfo {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.Voting {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
 .commentBlock {
     border-radius: 20px;
     padding: 10px;

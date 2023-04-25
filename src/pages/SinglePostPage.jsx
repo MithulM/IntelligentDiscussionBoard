@@ -1,12 +1,14 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { useParams } from "react-router-dom"
-import { getAPI, deleteAPI, postAPI } from '../apicalls.jsx';
+import { getAPI, deleteAPI, postAPI, putAPI } from '../apicalls.jsx';
 import { useNavigate } from 'react-router-dom';
 import '../styles/SinglePostPage.css';
 import { getTimeAgoString } from '../utils.jsx';
 import Comment from '../components/Comment.jsx';
 import ModalButton from "../components/ModalButton.jsx"
 import useAuth from '../hooks/useAuth.jsx';
+import { faReply, faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function SinglePostPage() {
 
@@ -90,7 +92,7 @@ function SinglePostPage() {
                         <div className="post-body-text">{post.post_content}</div>
                         <br></br>
                         <div className="modify">
-                            <ModalButton title="Reply" className="ModifyPost" isOpen={isReply} buttonName="Reply" setFunc={setReply} onConfirm={confirmReply}>
+                            <ModalButton title="Reply" className="ModifyPost" isOpen={isReply} buttonName={<FontAwesomeIcon icon={faReply} />} setFunc={setReply} onConfirm={confirmReply}>
                                 <form className="comments-form">
                                     <label className="comments-label">Leave a comment:</label>
                                     <textarea
@@ -103,7 +105,7 @@ function SinglePostPage() {
                                     ></textarea>
                                 </form>
                             </ModalButton>
-                            <ModalButton title="Edit Post" className="ModifyPost edit" isOpen={isEdit} buttonName="Edit" setFunc={setEdit} onConfirm={confirmEdit}>
+                            <ModalButton title="Edit Post" className="ModifyPost edit" isOpen={isEdit} buttonName={<FontAwesomeIcon icon={faEdit} />} setFunc={setEdit} onConfirm={confirmEdit}>
                                 <form className="edit-form">
                                     <label htmlFor="title">Title</label>
                                     <input
@@ -127,7 +129,7 @@ function SinglePostPage() {
                                     ></textarea>
                                 </form>
                             </ModalButton>
-                            <ModalButton isOpen={isDelete} title="Delete Post" className="ModifyPost delete" setFunc={setDelete} buttonName="Delete" onConfirm={confirmDelete}>
+                            <ModalButton isOpen={isDelete} title="Delete Post" className="ModifyPost delete" setFunc={setDelete} buttonName={<FontAwesomeIcon style={{ color: "#CC0000" }} icon={faTrashAlt} />} onConfirm={confirmDelete}>
                                 <p>Are you sure you want to delete this post?</p>
                             </ModalButton>
                         </div>

@@ -45,10 +45,8 @@
     background-color: var(--dark1);
     color: var(--text1);
     color: black;
-    width: 500px;
     padding: 20px;
     border-radius: 10px;
-    text-align: center;
     flex: 1;
 }
 

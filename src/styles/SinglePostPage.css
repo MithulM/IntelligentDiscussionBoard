@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
   min-height: 100vh;
   padding: 20px;
@@ -11,7 +11,7 @@
 
 .wrap-everything {
   background-color: #1a1a1a;
-  width: 90%;
+  width: 80%;
 }
 
 .post-container {
@@ -44,7 +44,7 @@
   color: #a5a5a5;
 }
 
-.onePostInfo > * {
+.onePostInfo>* {
   margin-right: 10px;
 }
 
@@ -101,7 +101,7 @@
   color: #a5a5a5;
 }
 
-.comment-header > * {
+.comment-header>* {
   margin-right: 10px;
 }
 
