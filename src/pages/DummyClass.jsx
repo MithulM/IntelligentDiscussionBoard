@@ -10,6 +10,7 @@ function DummyClass({ courseName, classID }) {
     const [posts, setPosts] = useState([]);
     const [searchQ, setSearchQ] = useState([]);
     const [isCreate, setCreate] = useState(false);
+    const [isHelpOpen, setHelpOpen] = useState(false);
     const postsPerPage = 100;
 
     const { auth, setAuth } = useAuth()
@@ -33,7 +34,7 @@ function DummyClass({ courseName, classID }) {
             getAPI("get_all_posts", [classID, postsPerPage], setPosts);
         }
     }
-
+    const quickHelpContent = useRef(null)
     const title = useRef(null);
     const content = useRef(null);
     const user_id = 3
@@ -56,6 +57,21 @@ function DummyClass({ courseName, classID }) {
         getAPI("get_all_posts", [classID, postsPerPage], setPosts);
         console.log(response)
     }
+
+    const handleQuickHelpSubmit = async () => {
+        const response = await postAPI("get_quick_answer", {
+          course_id: classID,
+          content: quickHelpContent.current.value,
+        }, {
+          headers: {
+            "Content-Type": 'application/json',
+            "Authorization": `Bearer ${auth.accessToken}`
+          },
+          withCredentials: true,
+        });
+        console.log(response)
+      };
+          
 
     return (
         <React.Fragment>
@@ -89,6 +105,18 @@ function DummyClass({ courseName, classID }) {
                         <ClassPosts title={courseName} postList={[...posts].reverse()} />
                     </div>
                 </div>
+            </div>
+            <div>
+                <ModalButton title="Quick Help" className="quickhelpbtn" isOpen={isHelpOpen} buttonName="Quick Help" setFunc={setHelpOpen} onConfirm={handleQuickHelpSubmit}>
+                        <form>
+                            <label htmlFor="content">Content:</label>
+                            <textarea
+                                id="content"
+                                ref={quickHelpContent}
+                                style={{ width: "100%", height: "200px" }}
+                            />
+                        </form>
+                </ModalButton>
             </div>
         </React.Fragment>
     );
