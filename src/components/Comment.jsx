@@ -4,7 +4,7 @@ import { getAPI, postAPI, deleteAPI, putAPI } from "../apicalls.jsx"
 import ModalButton from "./ModalButton";
 import useAuth from "../hooks/useAuth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faReply, faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faReply, faEdit, faTrashAlt, faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import "../styles/Comment.css"
 
 function style(depth) {
@@ -76,8 +76,6 @@ function Comment({ postID, comments, depth, setComments }) {
                 return (
                     <div key={comment.answer_id} style={style(depth)}>
                         <div className="commentInfo">
-                            <div className="Voting">
-                            </div>
                             <div className="commentBlock">
                                 <div className="post-header">
                                     <h2 className="post-title">{comment.title}</h2>
@@ -90,6 +88,9 @@ function Comment({ postID, comments, depth, setComments }) {
                                     <p>{comment.answer_content}</p>
                                 </div>
                                 <div className="modify">
+                                    <button>
+                                        <FontAwesomeIcon className="upvote-icon"icon={faArrowUp}/>
+                                    </button>
                                     <ModalButton title="Reply" className="ModifyPost" isOpen={isReply} buttonName={<FontAwesomeIcon icon={faReply} />} setFunc={setReply} onConfirm={(e) => confirmReply(comment.answer_id)}>
                                         <form className="comments-form">
                                             <label className="comments-label">Leave a comment:</label>

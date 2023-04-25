@@ -56,3 +56,11 @@
 .commentBlock.depth {
     margin-left: 20px;
 }
+
+.upvote-icon{
+    color: #1cb2f5
+}
+
+.upvote-icon:hover{
+    color: #e0dada
+}
