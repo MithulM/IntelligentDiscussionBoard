@@ -3,6 +3,8 @@ import { useNavigate, Link } from "react-router-dom";
 import { postAPI } from "../apicalls";
 import "../styles/SignPage.css"
 import useAuth from "../hooks/useAuth";
+import IDBLogo from "../../public/IDBLogo.png";
+import backgroundImage from "../../public/testBackground.png";
 
 const Register = () => {
     const navigate = useNavigate()
@@ -39,6 +41,7 @@ const Register = () => {
     return (
         <div className="signContainer">
             <section className="sign" onSubmit={submitAction}>
+            <img src={IDBLogo} alt="IDB Logo" />
                 <h1 className="heading">Register</h1>
                 <form>
                     <label htmlFor="username">Username:</label>

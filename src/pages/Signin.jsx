@@ -3,6 +3,7 @@ import { useNavigate, Link, useLocation } from "react-router-dom"
 import { useRef } from "react"
 import { postAPI } from "../apicalls";
 import useAuth from "../hooks/useAuth";
+import IDBLogo from "../../public/IDBLogo.png";
 
 function SigninPage() {
     const navigate = useNavigate()
@@ -35,6 +36,7 @@ function SigninPage() {
     return (
         <div className="signContainer">
             <section className="sign">
+                <img src={IDBLogo} alt="IDB Logo" />
                 <h1 className="heading">Sign in</h1>
                 <form onSubmit={submitAction} className="signin-form">
                     <label htmlFor="username">Username</label>
