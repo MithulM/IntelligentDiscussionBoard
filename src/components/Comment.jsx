@@ -7,12 +7,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faReply, faEdit, faTrashAlt, faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import "../styles/Comment.css"
 
-function style(depth) {
-    return {
-        marginLeft: 20 * depth + "px",
-    };
-}
-
 function Comment({ postID, comments, depth, setComments }) {
 
     const [isDelete, setDelete] = useState(false);
@@ -71,11 +65,19 @@ function Comment({ postID, comments, depth, setComments }) {
         navigate(-1);
     }
     return (
-        <div className="fullComments">
+        <div className="childComments">
             {comments.map((comment) => {
+                const items = [];
+
+                // Loop to generate n items
+                for (let i = 0; i < depth; i++) {
+                    items.push(<div key={i} className="threadLine">​</div>);
+                }
+
                 return (
-                    <div key={comment.answer_id} style={style(depth)}>
+                    <div key={comment.answer_id}>
                         <div className="commentInfo">
+                            {items}
                             <div className="commentBlock">
                                 <div className="post-header">
                                     <h2 className="post-title">{comment.title}</h2>
