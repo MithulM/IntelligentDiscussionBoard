@@ -15,6 +15,7 @@ const Register = () => {
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
     const passwordMatchRef = useRef(null);
+    const profRef = useRef(null);
 
     const submitAction = async (event) => {
         event.preventDefault();
@@ -25,15 +26,14 @@ const Register = () => {
                 username: nameRef.current.value,
                 email: emailRef.current.value,
                 password: passwordRef.current.value,
+                is_professor: profRef.current.checked,
+                course_id: 1
             }, {
                 headers: { "Content-Type": 'application/json' },
                 withCredentials: true
             });
-            const accessToken = response?.data?.access_token;
-            const roles = response?.data?.roles;
             console.log("Here")
-            setAuth({ user, pwd, roles, accessToken })
-            navigate("/");
+            navigate("/signin");
         }
     }
 
@@ -41,9 +41,10 @@ const Register = () => {
     return (
         <div className="signContainer">
             <section className="sign" onSubmit={submitAction}>
-            <img src={IDBLogo} alt="IDB Logo" />
+                <img src={IDBLogo} alt="IDB Logo" />
                 <h1 className="heading">Register</h1>
                 <form>
+                    {errorMessage && <p className="error">{errorMessage}</p>}
                     <label htmlFor="username">Username:</label>
                     <input
                         type="text"
@@ -84,7 +85,10 @@ const Register = () => {
                         required
                         ref={passwordMatchRef}
                     />
-                    {errorMessage && <p className="error">{errorMessage}</p>}
+                    <div>
+                        <input type="checkbox" ref={profRef} />
+                        <span> Are you a professor?</span>
+                    </div>
                     <Link to="/signin">Already registered?</Link>
                     <button type="submit">Register</button>
                 </form>

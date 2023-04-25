@@ -1,6 +1,9 @@
 import { getTimeAgoString } from "../utils";
+import { useRef, useState } from "react"
+import { getAPI, postAPI, deleteAPI, putAPI } from "../apicalls.jsx"
+import ModalButton from "./ModalButton";
+import useAuth from "../hooks/useAuth";
 import "../styles/Comment.css"
-import PostFooter from "./postFooter";
 
 function style(depth) {
     return {
@@ -8,7 +11,63 @@ function style(depth) {
     };
 }
 
-function Comment({ comments, depth }) {
+function Comment({ postID, comments, depth, setComments }) {
+
+    const [isDelete, setDelete] = useState(false);
+    const [isReply, setReply] = useState(false);
+    const [isEdit, setEdit] = useState(false);
+    const [editContent, setEditContent] = useState("");
+
+    const { auth } = useAuth();
+
+    const replyRef = useRef("");
+    const editContentRef = useRef("");
+
+    const confirmReply = async (answer_id) => {
+        const response = await postAPI("create_answer", {
+            post_id: postID,
+            parent_answer: answer_id,
+            user_id: auth.user_id,
+            answer_content: replyRef.current.value
+        }, {
+            headers: {
+                "Content-Type": 'application/json',
+                "Authorization": `Bearer ${auth.accessToken}`
+            },
+            withCredentials: true,
+        });
+        console.log(response);
+        const updatedComments = await getAPI("get_answers_for_post", [postID], setComments);
+        setComments(updatedComments);
+    }
+
+    const confirmEdit = async (answer_id) => {
+        const response = await putAPI("edit_post", {
+            answer_id: answer_id,
+            answer_content: editContentRef.current.value
+        }, {
+            headers: {
+                "Content-Type": 'application/json',
+                "Authorization": `Bearer ${auth.accessToken}`
+            },
+            withCredentials: true,
+        });
+        console.log(response);
+        setEditContent(comment.answer_content);
+        setEdit(true);
+        const updatedComments = await getAPI("get_answers_for_post", [postID], setComments);
+        setComments(updatedComments);
+    }
+
+    const confirmDelete = async (answer_id) => {
+        await deleteAPI("delete_answer", {
+            answer_id: answer_id
+        }, {
+            "Content-Type": 'application/json',
+            "Authorization": `Bearer ${auth.accessToken}`
+        });
+        navigate(-1);
+    }
     return (
         <div className="fullComments">
             {comments.map((comment) => {
@@ -25,9 +84,40 @@ function Comment({ comments, depth }) {
                             <div className="post-body">
                                 <p>{comment.answer_content}</p>
                             </div>
-                            <PostFooter postID={comment.answer_id} />
                         </div>
-                        {comment.replies && <Comment depth={depth + 1} comments={comment.replies} />}
+                        <div className="modify">
+                            <ModalButton title="Reply" className="ModifyPost" isOpen={isReply} buttonName="Reply" setFunc={setReply} onConfirm={(e) => confirmReply(comment.answer_id)}>
+                                <form className="comments-form">
+                                    <label className="comments-label">Leave a comment:</label>
+                                    <textarea
+                                        className="comments-input"
+                                        id="comment-body"
+                                        placeholder="Enter your comment here"
+                                        rows="10"
+                                        cols="45"
+                                        ref={replyRef}
+                                    ></textarea>
+                                </form>
+                            </ModalButton>
+                            <ModalButton title="Edit Post" className="ModifyPost edit" isOpen={isEdit} buttonName="Edit" setFunc={setEdit} onConfirm={(e) => confirmEdit(comment.answer_id)}>
+                                <form className="edit-form">
+                                    <label className="edit-label">Edit your reply: </label>
+                                    <textarea
+                                        className="edit-input"
+                                        id="edit-body"
+                                        placeholder="Edit your Reply"
+                                        rows="10"
+                                        cols="45"
+                                        defaultValue={comment.answer_content}
+                                        ref={editContentRef}
+                                    ></textarea>
+                                </form>
+                            </ModalButton>
+                            <ModalButton isOpen={isDelete} title="Delete Reply" className="ModifyPost delete" setFunc={setDelete} buttonName="Delete" onConfirm={(e) => confirmDelete(comment.answer_id)}>
+                                <p>Are you sure you want to delete this reply?</p>
+                            </ModalButton>
+                        </div>
+                        {comment.replies && <Comment postID={postID} setComments={setComments} depth={depth + 1} comments={comment.replies} />}
                     </div>
                 );
             })}

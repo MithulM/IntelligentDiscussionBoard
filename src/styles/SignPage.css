@@ -63,3 +63,7 @@ form button[type="submit"] {
 form button[type="submit"]:hover {
     background-color: var(--UTDGreen2);
 }
+
+form textarea{
+    resize: none;
+}

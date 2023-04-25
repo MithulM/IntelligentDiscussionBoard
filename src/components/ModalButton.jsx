@@ -1,7 +1,7 @@
 import Modal from "./Modal";
 
 function ModalButton({ title, className, isOpen, children, setFunc, buttonName, onConfirm }) {
-    
+
     const closeOnConfirm = () => {
         onConfirm();
         setFunc(false)

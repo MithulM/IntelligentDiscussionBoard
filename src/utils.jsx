@@ -36,7 +36,9 @@ export const getRandPosts = (min, max) => {
 }
 
 export function getTimeAgoString(timestamp) {
+    const UTCToCST = 5;
     const date = new Date(timestamp);
+    date.setHours(date.getHours() - UTCToCST);
     const now = new Date();
 
     const diffInSeconds = Math.floor((now - date) / 1000);

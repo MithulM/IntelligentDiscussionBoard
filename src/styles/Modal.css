@@ -7,6 +7,7 @@
     width: 100vw;
     height: 100vh;
     background-color: RGBA(0, 0, 0, .7);
+    color: var(--text1);
     z-index: 10000;
 }
 
@@ -24,22 +25,25 @@
     align-items: center;
     border-radius: 20px;
     padding: 10px;
+    color: var(--text1);
     justify-content: center;
 }
 
 .close-button {
+    color: var(--text1);
     position: absolute;
     top: 10px;
     right: 10px;
 }
 
 .modal-title {
-    color: #000;
+    color: var(--text1);
     flex: 1;
 }
 
 .content {
     background-color: var(--dark1);
+    color: var(--text1);
     color: black;
     width: 500px;
     padding: 20px;
@@ -48,7 +52,12 @@
     flex: 1;
 }
 
+.content>* {
+    color: var(--text1);
+}
+
 .button-container {
+    color: var(--text1);
     display: flex;
     flex: 1;
     justify-content: center;
@@ -57,6 +66,7 @@
 
 .confirm-button {
     background-color: red;
+    color: var(--text1);
     color: white;
     padding: 10px 20px;
     border-radius: 5px;

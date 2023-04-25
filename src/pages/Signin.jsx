@@ -1,5 +1,5 @@
 import "../styles/SignPage.css"
-import { useNavigate, Link, useLocation } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import { useRef } from "react"
 import { postAPI } from "../apicalls";
 import useAuth from "../hooks/useAuth";
