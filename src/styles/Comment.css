@@ -56,10 +56,10 @@
     margin: 10px 0;
 }
 
-.upvote-icon{
-    color: #1cb2f5
+.upvote-icon > * {
+    color: #e0dada
 }
 
-.upvote-icon:hover{
-    color: #e0dada
+.upvote-icon:hover > *{
+    color: #1cb2f5
 }

@@ -90,8 +90,8 @@ function Comment({ postID, comments, depth, setComments }) {
                                     <p>{comment.answer_content}</p>
                                 </div>
                                 <div className="modify">
-                                    <button>
-                                        <FontAwesomeIcon className="upvote-icon"icon={faArrowUp}/>
+                                    <button className="upvote-icon">
+                                        <FontAwesomeIcon icon={faArrowUp}/>
                                     </button>
                                     <ModalButton title="Reply" className="ModifyPost" isOpen={isReply} buttonName={<FontAwesomeIcon icon={faReply} />} setFunc={setReply} onConfirm={(e) => confirmReply(comment.answer_id)}>
                                         <form className="comments-form">
@@ -126,7 +126,7 @@ function Comment({ postID, comments, depth, setComments }) {
                                 </div>
                             </div>
                         </div>
-                        {comment.replies && <Comment postID={postID} setComments={setComments} depth={depth + 1} comments={comment.replies} />}
+                        {comment.replies && <Comment postID={postID} setComments={setComments} depth={depth + 1} comments={[...comment.replies].reverse()} />}
                     </div>
                 );
             })}

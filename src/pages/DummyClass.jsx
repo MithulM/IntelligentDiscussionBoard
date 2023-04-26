@@ -48,8 +48,8 @@ function DummyClass({ courseName, classID }) {
             await postAPI("create_post", {
                 user_id: auth.user_id,
                 course_id: classID,
-                post_title: title.current.value,
-                post_content: content.current.value
+                post_title: title,
+                post_content: content
             }, {
                 headers: {
                     "Content-Type": 'application/json',
