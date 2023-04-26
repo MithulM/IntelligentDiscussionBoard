@@ -39,15 +39,13 @@ function NavLayout({ courseList }) {
               />
             </li>
           ))}
-          <li>
-            <button onClick={signout}>
-              <span className="icon">
-                <FontAwesomeIcon icon={faSignOutAlt} />
-              </span>
-              <span className="button-text">Sign Out</span>
-            </button>
-          </li>
         </ul>
+        <button onClick={signout}>
+          <span className="icon">
+            <FontAwesomeIcon icon={faSignOutAlt} />
+          </span>
+          <span className="button-text">Sign Out</span>
+        </button>
       </div>
       <div className="page">
         <Outlet />

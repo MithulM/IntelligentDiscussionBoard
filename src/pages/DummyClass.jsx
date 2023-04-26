@@ -108,9 +108,7 @@ function DummyClass({ courseName, classID }) {
                     <button onClick={(event) => setSearch(event, classID)} className="searchButton" type="submit">search</button>
                 </div>
                 <div className="postsList">
-                    <div className="posts">
-                        <ClassPosts title={courseName} postList={[...posts].reverse()} />
-                    </div>
+                    <ClassPosts title={courseName} postList={[...posts].reverse()} />
                 </div>
             </div>
             <div>

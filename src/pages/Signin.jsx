@@ -16,21 +16,25 @@ function SigninPage() {
         event.preventDefault();
         const user = nameRef.current.value;
         const pwd = passwordRef.current.value;
-        const response = await postAPI("auth/login", {
+        await postAPI("auth/login", {
             username: user,
             password: pwd,
         }, {
             headers: { "Content-Type": 'application/json' },
             withCredentials: true
+        }).then((response) => {
+            console.log("Data:", response);
+            const accessToken = response?.access_token;
+            const role = response?.role;
+            const email = response?.email;
+            const user_id = response?.user_id;
+            setAuth({ user, email, pwd, user_id, role, accessToken });
+            console.log("Auth: ", auth);
+            navigate("/");
+        }).catch((e) => {
+            alert("Invalid credentials given!")
+            console.error(e);
         });
-        console.log("Data:", response);
-        const accessToken = response?.access_token;
-        const role = response?.role;
-        const email = response?.email;
-        const user_id = response?.user_id;
-        setAuth({ user, email, pwd, user_id, role, accessToken });
-        console.log("Auth: ", auth);
-        navigate("/");
     }
 
     return (

@@ -1,3 +1,10 @@
+.classPosts .postHeading .postTitle,
+.classPosts .contentPreview p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .classPosts {
   height: 100%;
   background-color: var(--dark2);

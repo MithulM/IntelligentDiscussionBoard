@@ -62,6 +62,8 @@
 .postsList {
     display: flex;
     width: 100%;
+    flex-direction: column;
+    max-width: 100%;
 }
 
 .classCreatePostBtn {

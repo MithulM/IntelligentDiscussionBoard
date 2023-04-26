@@ -2,22 +2,21 @@ import React, { useState, useEffect } from 'react';
 import '../styles/HomePage.css'
 import ClassPosts from '../components/ClassPosts';
 import { getAPI } from '../apicalls'
+import useAuth from '../hooks/useAuth';
 
 function HomePage() {
+
+  const { auth } = useAuth();
+
   const [userPosts, setUserPosts] = useState([]);
   const [profPosts, setProfPosts] = useState([]);
   const [recentPosts, setRecentPosts] = useState([]);
   const [recPosts, setRecPosts] = useState([]);
 
   const profID = 1;
-  const userID = 3;
 
   let data = [];
   let topics = [
-    {
-      topic: "Professor",
-      var: profPosts,
-    },
     {
       topic: "Your",
       var: userPosts,
@@ -31,6 +30,13 @@ function HomePage() {
       var: recPosts,
     },
   ];
+
+  if (auth.role !== "professor") {
+    topics.push({
+      topic: "Professor",
+      var: profPosts,
+    });
+  }
   for (let i = 0; i < topics.length; i++) {
     data.push({
       topic: topics[i].topic,
@@ -40,25 +46,26 @@ function HomePage() {
   }
 
   useEffect(() => {
-    getAPI("get_user_posts", [userID], setUserPosts);
+    getAPI("get_user_posts", [auth.user_id], setUserPosts);
   }, []);
 
   useEffect(() => {
     getAPI("get_recommended_posts", [], setRecPosts);
   }, []);
 
-  useEffect(() => {
-    getAPI("get_professor_posts", [profID], setProfPosts);
-  }, []);
 
   useEffect(() => {
     getAPI("get_recent_posts", [], setRecentPosts);
   }, []);
 
+  useEffect(() => {
+    getAPI("get_professor_posts", [profID], setProfPosts);
+  }, []);
+
   return (
     <div>
       <div className="jumbotron">
-        <h1>Posts From Your Community</h1>
+        <h1>Welcome {auth.user}. Posts From Your Classes</h1>
       </div>
       <div className="container-fluid">
         <div className="row">

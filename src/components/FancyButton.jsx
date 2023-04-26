@@ -1,15 +1,15 @@
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, matchPath } from 'react-router-dom';
 import "../styles/FancyButton.css"
 
 function FancyButton({ to, menuTab }) {
     const navigate = useNavigate();
-    const location = useLocation();
+    const { pathname } = useLocation();
 
     const handleClick = () => {
         navigate(to);
     };
 
-    const isActive = location.pathname === to;
+    const isActive = matchPath({ path: `${to}/*` }, pathname);
 
     return (
         <button className={`learn-more ${isActive ? 'active' : ''}`} onClick={handleClick}>
