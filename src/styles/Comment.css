@@ -17,10 +17,16 @@
     margin-right: 50px;
     background-color: var(--text1);
 }
+
+.threadLine:hover {
+    background-color: var(--UTDOrange);
+}
+
 .commentBlock {
     border-radius: 20px;
     padding: 10px;
     padding-top: 0;
+    padding-bottom: 0;
 }
 
 .childComments {
@@ -56,10 +62,14 @@
     margin: 10px 0;
 }
 
-.upvote-icon > * {
+.vote-icon>* {
     color: #e0dada
 }
 
-.upvote-icon:hover > *{
-    color: #1cb2f5
+.upvote:hover>* {
+    color: var(--UTDOrange)
+}
+
+.refresh-icon {
+    color: #00CC00;
 }

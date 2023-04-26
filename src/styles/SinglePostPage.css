@@ -31,8 +31,7 @@
   padding: 12px;
   border: 1px solid #595c5f;
   border-radius: 4px;
-  background-color: #cfa5a5;
-  max-width: 800px;
+  background-color: var(--dark4);
   width: 100%;
 }
 
@@ -50,7 +49,7 @@
 
 .post-course-title {
   font-weight: bold;
-  color: #0576cc;
+  color: var(--UTDOrange);
 }
 
 
@@ -140,4 +139,26 @@
   margin-left: auto;
   color: #0079d3;
   font-weight: bold;
+}
+
+.icon {
+  width: 20px;
+  border-radius: 30px;
+}
+
+.reply-icon {
+  color: var(--UTDOrange);
+}
+
+.comments {
+  padding-right: 5px
+}
+
+.delete-icon,
+.downvote:hover>* {
+  color: #CC0000
+}
+
+.refresh-icon {
+  color: #00CC00;
 }

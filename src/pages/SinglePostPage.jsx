@@ -7,7 +7,7 @@ import { getTimeAgoString } from '../utils.jsx';
 import Comment from '../components/Comment.jsx';
 import ModalButton from "../components/ModalButton.jsx"
 import useAuth from '../hooks/useAuth.jsx';
-import { faReply, faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faReply, faEdit, faTrashAlt, faComment, faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function SinglePostPage() {
@@ -71,6 +71,14 @@ function SinglePostPage() {
         navigate(-1);
     }
 
+    const refresh = () => {
+        getAPI("get_specific_post", [postID], setPost);
+        getAPI("get_answers_for_post", [postID], setComments);
+        setDelete(false);
+        setEdit(false);
+        setReply(false);
+    }
+
     useEffect(() => {
         getAPI("get_specific_post", [postID], setPost);
     }, [postID]);
@@ -92,7 +100,9 @@ function SinglePostPage() {
                         <div className="post-body-text">{post.post_content}</div>
                         <br></br>
                         <div className="modify">
-                            <ModalButton title="Reply" className="ModifyPost" isOpen={isReply} buttonName={<FontAwesomeIcon icon={faReply} />} setFunc={setReply} onConfirm={confirmReply}>
+                            <FontAwesomeIcon className="icon comments" icon={faComment} />
+                            <span>{post.answer_count} Replies</span>
+                            <ModalButton title="Reply" className="ModifyPost" isOpen={isReply} buttonName={<FontAwesomeIcon className="icon" icon={faReply} />} setFunc={setReply} onConfirm={confirmReply}>
                                 <form className="comments-form">
                                     <label className="comments-label">Leave a comment:</label>
                                     <textarea
@@ -105,33 +115,38 @@ function SinglePostPage() {
                                     ></textarea>
                                 </form>
                             </ModalButton>
-                            <ModalButton title="Edit Post" className="ModifyPost edit" isOpen={isEdit} buttonName={<FontAwesomeIcon icon={faEdit} />} setFunc={setEdit} onConfirm={confirmEdit}>
-                                <form className="edit-form">
-                                    <label htmlFor="title">Title</label>
-                                    <input
-                                        type="text"
-                                        id="title"
-                                        name="title"
-                                        required
-                                        placeholder="Enter a title"
-                                        defaultValue={post.post_title}
-                                        ref={editTitleRef}
-                                    />
-                                    <label className="edit-label">Edit your post: </label>
-                                    <textarea
-                                        className="edit-input"
-                                        id="edit-body"
-                                        placeholder="Edit your post"
-                                        rows="10"
-                                        cols="45"
-                                        defaultValue={post.post_content}
-                                        ref={editContentRef}
-                                    ></textarea>
-                                </form>
-                            </ModalButton>
-                            <ModalButton isOpen={isDelete} title="Delete Post" className="ModifyPost delete" setFunc={setDelete} buttonName={<FontAwesomeIcon style={{ color: "#CC0000" }} icon={faTrashAlt} />} onConfirm={confirmDelete}>
-                                <p>Are you sure you want to delete this post?</p>
-                            </ModalButton>
+                            {(post.user_id !== auth.user_id) ?
+                                (undefined) :
+                                <ModalButton title="Edit Post" className="ModifyPost edit" isOpen={isEdit} buttonName={<FontAwesomeIcon className="icon reply-icon" icon={faEdit} />} setFunc={setEdit} onConfirm={confirmEdit}>
+                                    <form className="edit-form">
+                                        <label htmlFor="title">Title</label>
+                                        <input
+                                            type="text"
+                                            id="title"
+                                            name="title"
+                                            required
+                                            placeholder="Enter a title"
+                                            defaultValue={post.post_title}
+                                            ref={editTitleRef}
+                                        />
+                                        <label className="edit-label">Edit your post: </label>
+                                        <textarea
+                                            className="edit-input"
+                                            id="edit-body"
+                                            placeholder="Edit your post"
+                                            rows="10"
+                                            cols="45"
+                                            defaultValue={post.post_content}
+                                            ref={editContentRef}
+                                        ></textarea>
+                                    </form>
+                                </ModalButton>}
+                            {(post.user_id !== auth.user_id) ?
+                                (undefined) :
+                                <ModalButton isOpen={isDelete} title="Delete Post" className="ModifyPost delete" setFunc={setDelete} buttonName={<FontAwesomeIcon className="icon delete-icon" icon={faTrashAlt} />} onConfirm={confirmDelete}>
+                                    <p>Are you sure you want to delete this post?</p>
+                                </ModalButton>}
+                            <button onClick={refresh}><FontAwesomeIcon clssName="icon refresh-icon" icon={faArrowsRotate} /></button>
                         </div>
                     </div>
                 </div>

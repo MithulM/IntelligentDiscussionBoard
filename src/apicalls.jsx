@@ -3,15 +3,15 @@ import axios from 'axios'
 const serverURL = "https://eflask-idb-be.herokuapp.com";
 // serverURL = "localhost:5000"
 
-export async function getAPI(apiCall, params, setVar) {
+export async function getAPI(apiCall, params, setVar, config = {}) {
     try {
         let URLparams = "";
         for (let i = 0; i < params.length; i++) {
             URLparams += "/" + String(params[i]);
         }
-        console.log(serverURL + "/" + apiCall + URLparams);
-        const response = await axios.get(serverURL + "/" + apiCall + URLparams);
-        // console.log(response.data);
+        console.log(serverURL + "/" + apiCall + URLparams, config);
+        const response = await axios.get(serverURL + "/" + apiCall + URLparams, config);
+        console.log(apiCall, response.data);
         setVar(response.data);
         return response.data;
     } catch (err) {

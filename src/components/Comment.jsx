@@ -4,7 +4,7 @@ import { getAPI, postAPI, deleteAPI, putAPI } from "../apicalls.jsx"
 import ModalButton from "./ModalButton";
 import useAuth from "../hooks/useAuth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faReply, faEdit, faTrashAlt, faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { faReply, faEdit, faTrashAlt, faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import "../styles/Comment.css"
 
 function Comment({ postID, comments, depth, setComments }) {
@@ -62,7 +62,7 @@ function Comment({ postID, comments, depth, setComments }) {
             "Content-Type": 'application/json',
             "Authorization": `Bearer ${auth.accessToken}`
         });
-        navigate(-1);
+        const updatedComments = await getAPI("get_answers_for_post", [postID], setComments);
     }
     return (
         <div className="childComments">
@@ -90,8 +90,14 @@ function Comment({ postID, comments, depth, setComments }) {
                                     <p>{comment.answer_content}</p>
                                 </div>
                                 <div className="modify">
-                                    <button className="upvote-icon">
-                                        <FontAwesomeIcon icon={faArrowUp}/>
+                                    <button className="vote-icon upvote">
+                                        <FontAwesomeIcon icon={faArrowUp} />
+                                    </button>
+                                    <span className="vote-icon">
+                                        <span className="upvote-number">{comment.vote_count}</span>
+                                    </span>
+                                    <button className="vote-icon downvote">
+                                        <FontAwesomeIcon icon={faArrowDown} />
                                     </button>
                                     <ModalButton title="Reply" className="ModifyPost" isOpen={isReply} buttonName={<FontAwesomeIcon icon={faReply} />} setFunc={setReply} onConfirm={(e) => confirmReply(comment.answer_id)}>
                                         <form className="comments-form">
@@ -106,23 +112,27 @@ function Comment({ postID, comments, depth, setComments }) {
                                             ></textarea>
                                         </form>
                                     </ModalButton>
-                                    <ModalButton title="Edit Post" className="ModifyPost edit" isOpen={isEdit} buttonName={<FontAwesomeIcon icon={faEdit} />} setFunc={setEdit} onConfirm={(e) => confirmEdit(comment.answer_id)}>
-                                        <form className="edit-form">
-                                            <label className="edit-label">Edit your reply: </label>
-                                            <textarea
-                                                className="edit-input"
-                                                id="edit-body"
-                                                placeholder="Edit your Reply"
-                                                rows="10"
-                                                cols="45"
-                                                defaultValue={editContent}
-                                                ref={editContentRef}
-                                            ></textarea>
-                                        </form>
-                                    </ModalButton>
-                                    <ModalButton isOpen={isDelete} title="Delete Reply" className="ModifyPost delete" setFunc={setDelete} buttonName={<FontAwesomeIcon style={{ color: "#CC0000" }} icon={faTrashAlt} />} onConfirm={(e) => confirmDelete(comment.answer_id)}>
-                                        <p>Are you sure you want to delete this reply?</p>
-                                    </ModalButton>
+                                    {(comment.user.user_id !== auth.user_id) ?
+                                        (undefined) :
+                                        <ModalButton title="Edit Post" className="ModifyPost edit" isOpen={isEdit} buttonName={<FontAwesomeIcon className="icon reply-icon" icon={faEdit} />} setFunc={setEdit} onConfirm={(e) => confirmEdit(comment.answer_id)}>
+                                            <form className="edit-form">
+                                                <label className="edit-label">Edit your reply: </label>
+                                                <textarea
+                                                    className="edit-input"
+                                                    id="edit-body"
+                                                    placeholder="Edit your Reply"
+                                                    rows="10"
+                                                    cols="45"
+                                                    defaultValue={editContent}
+                                                    ref={editContentRef}
+                                                ></textarea>
+                                            </form>
+                                        </ModalButton>}
+                                    {(comment.user.user_id !== auth.user_id) ?
+                                        (undefined) :
+                                        <ModalButton isOpen={isDelete} title="Delete Reply" className="ModifyPost delete" setFunc={setDelete} buttonName={<FontAwesomeIcon className="icon delete-icon" icon={faTrashAlt} />} onConfirm={(e) => confirmDelete(comment.answer_id)}>
+                                            <p>Are you sure you want to delete this reply?</p>
+                                        </ModalButton>}
                                 </div>
                             </div>
                         </div>

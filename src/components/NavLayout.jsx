@@ -17,6 +17,7 @@ function NavLayout({ courseList }) {
     navigate("/signin");
   };
 
+  console.log("Course List", auth.courseList);
   return (
     <div className="container">
       <div className="menu">

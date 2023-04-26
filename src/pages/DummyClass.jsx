@@ -3,6 +3,8 @@ import '../styles/DummyClass.css';
 import ClassPosts from '../components/ClassPosts'
 import ModalButton from '../components/ModalButton';
 import { getAPI, postAPI } from '../apicalls'
+import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useAuth from '../hooks/useAuth';
 
 function DummyClass({ courseName, classID }) {
@@ -41,7 +43,11 @@ function DummyClass({ courseName, classID }) {
             getAPI("get_all_posts", [classID, postsPerPage], setPosts);
         }
     }
-    const quickHelpContent = useRef(null)
+
+    const refresh = () => {
+        getAPI("get_all_posts", [classID, postsPerPage], setPosts);
+    }
+    const quickHelpContent = useRef(null);
 
     const createPost = async () => {
         const response =
@@ -106,6 +112,7 @@ function DummyClass({ courseName, classID }) {
                         onChange={(e) => setSearchQ(e.target.value)}
                     />
                     <button onClick={(event) => setSearch(event, classID)} className="searchButton" type="submit">search</button>
+                    <button onClick={refresh}><FontAwesomeIcon className="icon refresh-icon" icon={faArrowsRotate} /></button>
                 </div>
                 <div className="postsList">
                     <ClassPosts title={courseName} postList={[...posts].reverse()} />

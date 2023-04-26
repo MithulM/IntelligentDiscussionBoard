@@ -9,9 +9,17 @@ import Register from "./pages/Register.jsx"
 import WebsiteLayout from "./WebsiteLayout.jsx"
 import Missing from "./pages/Missing.jsx"
 import { NotAuth } from './components/RequireAuth.jsx'
+import useAuth from './hooks/useAuth.jsx'
 import './styles/App.css'
 
 function App() {
+
+  const { auth } = useAuth();
+
+  if (!auth.courseList) {
+    <div>Loading...</div>
+  }
+
   const courseList = [
     {
       id: 1,
@@ -39,12 +47,14 @@ function App() {
           <Route element={<RequireAuth />}>
             <Route path="/" element={<NavLayout courseList={courseList} />}>
               <Route path="/" element={<HomePage />} />
-              {courseList.map(courseName =>
-                <Route key={courseName.id} path={"/" + courseName.class.toLowerCase().replace(/\s/g, '')}>
-                  <Route index element={<DummyClass courseName={courseName.class} classID={courseName.id} />} />
-                  <Route path=":postID" element={<SinglePostPage courseName={courseName.class} />} />
-                </Route>
-              )}
+              {(!courseList) ?
+                undefined :
+                (courseList.map(courseName =>
+                  <Route key={courseName.id} path={"/" + courseName.class.toLowerCase().replace(/\s/g, '')}>
+                    <Route index element={<DummyClass courseName={courseName.class} classID={courseName.id} />} />
+                    <Route path=":postID" element={<SinglePostPage courseName={courseName.class} />} />
+                  </Route>
+                ))}
             </Route>
           </Route>
           <Route path="*" element={<Missing />} />

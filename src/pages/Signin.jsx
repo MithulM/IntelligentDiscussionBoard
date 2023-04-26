@@ -1,7 +1,7 @@
 import "../styles/SignPage.css"
 import { useNavigate, Link } from "react-router-dom"
-import { useRef } from "react"
-import { postAPI } from "../apicalls";
+import { useRef, useState, useEffect } from "react"
+import { postAPI, getAPI } from "../apicalls";
 import useAuth from "../hooks/useAuth";
 import IDBLogo from "../../public/IDBLogo.png";
 
@@ -9,6 +9,7 @@ function SigninPage() {
     const navigate = useNavigate()
     const nameRef = useRef(null);
     const passwordRef = useRef(null);
+    const [courseList, setCourseList] = useState([]);
     const { auth, setAuth } = useAuth();
 
     const submitAction = async (event) => {
@@ -23,19 +24,51 @@ function SigninPage() {
             headers: { "Content-Type": 'application/json' },
             withCredentials: true
         }).then((response) => {
-            console.log("Data:", response);
             const accessToken = response?.access_token;
             const role = response?.role;
             const email = response?.email;
             const user_id = response?.user_id;
-            setAuth({ user, email, pwd, user_id, role, accessToken });
-            console.log("Auth: ", auth);
-            navigate("/");
+            setAuth({ user, email, pwd, user_id, role, accessToken, courseList });
         }).catch((e) => {
             alert("Invalid credentials given!")
             console.error(e);
         });
     }
+
+    useEffect(() => {
+        const fetchUserCourses = async () => {
+            try {
+                const response = await getAPI(
+                    "user_courses",
+                    [],
+                    setCourseList,
+                    {
+                        headers: {
+                            "Content-Type": 'application/json',
+                            "Authorization": `Bearer ${auth.accessToken}`
+                        },
+                        withCredentials: true
+                    }
+                ).then((response) => {
+                    setAuth({ ...auth, courseList });
+                    navigate("/");
+                }).catch((e) => {
+                    alert("Invalid autherization given!")
+                    console.error(e);
+                });
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        if (auth.accessToken) {
+            fetchUserCourses();
+        }
+    }, [auth.accessToken]);
+
+    useEffect(() => {
+        console.log("Auth: ", auth);
+    }, [courseList])
 
     return (
         <div className="signContainer">
