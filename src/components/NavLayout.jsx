@@ -17,34 +17,31 @@ function NavLayout({ courseList }) {
     navigate("/signin");
   };
 
-  console.log("Course List", auth.courseList);
   return (
     <div className="container">
       <div className="menu">
-        <ul>
-          <li>
+        <div className="buttons">
+          <div className="coursesButton">
             <FancyButton
               to="/"
               menuTab="Home"
               onClick={() => navigate("/")}
             />
-          </li>
+          </div>
           {courseList.map((courseName) => (
-            <li key={courseName.id}>
+            <div key={courseName.course_id} className="coursesButton">
               <FancyButton
-                to={"/" + courseName.class.toLowerCase().replace(/\s/g, "")}
-                menuTab={courseName.class}
+                to={"/" + courseName.course_number.toLowerCase().replace(/\s/g, "")}
+                menuTab={courseName.course_number}
                 onClick={() =>
-                  navigate("/" + courseName.class.toLowerCase().replace(/\s/g, ""))
+                  navigate("/" + courseName.course_number.toLowerCase().replace(/\s/g, ""))
                 }
               />
-            </li>
+            </div>
           ))}
-        </ul>
-        <button onClick={signout}>
-          <span className="icon">
-            <FontAwesomeIcon icon={faSignOutAlt} />
-          </span>
+        </div>
+        <button className="signout" onClick={signout}>
+          <span className="icon"><FontAwesomeIcon icon={faSignOutAlt} /></span>
           <span className="button-text">Sign Out</span>
         </button>
       </div>

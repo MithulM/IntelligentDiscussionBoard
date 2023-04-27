@@ -9,7 +9,6 @@ function SigninPage() {
     const navigate = useNavigate()
     const nameRef = useRef(null);
     const passwordRef = useRef(null);
-    const [courseList, setCourseList] = useState([]);
     const { auth, setAuth } = useAuth();
 
     const submitAction = async (event) => {
@@ -28,47 +27,14 @@ function SigninPage() {
             const role = response?.role;
             const email = response?.email;
             const user_id = response?.user_id;
+            const courseList = response?.courses ?? [];
             setAuth({ user, email, pwd, user_id, role, accessToken, courseList });
+            console.log("PEEEEPEPEPEPPEPEPEPPE ", auth);
         }).catch((e) => {
             alert("Invalid credentials given!")
             console.error(e);
         });
     }
-
-    useEffect(() => {
-        const fetchUserCourses = async () => {
-            try {
-                const response = await getAPI(
-                    "user_courses",
-                    [],
-                    setCourseList,
-                    {
-                        headers: {
-                            "Content-Type": 'application/json',
-                            "Authorization": `Bearer ${auth.accessToken}`
-                        },
-                        withCredentials: true
-                    }
-                ).then((response) => {
-                    setAuth({ ...auth, courseList });
-                    navigate("/");
-                }).catch((e) => {
-                    alert("Invalid autherization given!")
-                    console.error(e);
-                });
-            } catch (error) {
-                console.error(error);
-            }
-        };
-
-        if (auth.accessToken) {
-            fetchUserCourses();
-        }
-    }, [auth.accessToken]);
-
-    useEffect(() => {
-        console.log("Auth: ", auth);
-    }, [courseList])
 
     return (
         <div className="signContainer">

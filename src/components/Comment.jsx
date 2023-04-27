@@ -108,12 +108,13 @@ function Comment({ postID, comments, depth, setComments }) {
                                                 placeholder="Enter your comment here"
                                                 rows="10"
                                                 cols="45"
+                                                required
                                                 ref={replyRef}
                                             ></textarea>
                                         </form>
                                     </ModalButton>
                                     {(comment.user.user_id !== auth.user_id) ?
-                                        (undefined) :
+                                        (null) :
                                         <ModalButton title="Edit Post" className="ModifyPost edit" isOpen={isEdit} buttonName={<FontAwesomeIcon className="icon reply-icon" icon={faEdit} />} setFunc={setEdit} onConfirm={(e) => confirmEdit(comment.answer_id)}>
                                             <form className="edit-form">
                                                 <label className="edit-label">Edit your reply: </label>
@@ -123,13 +124,14 @@ function Comment({ postID, comments, depth, setComments }) {
                                                     placeholder="Edit your Reply"
                                                     rows="10"
                                                     cols="45"
+                                                    required
                                                     defaultValue={editContent}
                                                     ref={editContentRef}
                                                 ></textarea>
                                             </form>
                                         </ModalButton>}
                                     {(comment.user.user_id !== auth.user_id) ?
-                                        (undefined) :
+                                        (null) :
                                         <ModalButton isOpen={isDelete} title="Delete Reply" className="ModifyPost delete" setFunc={setDelete} buttonName={<FontAwesomeIcon className="icon delete-icon" icon={faTrashAlt} />} onConfirm={(e) => confirmDelete(comment.answer_id)}>
                                             <p>Are you sure you want to delete this reply?</p>
                                         </ModalButton>}

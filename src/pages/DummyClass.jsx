@@ -25,7 +25,7 @@ function DummyClass({ courseName, classID }) {
     }, [classID]);
 
     useEffect(() => {
-        getAPI("search_with_title_content", [content || "X", title || "X", 10], setSimilarPost);
+        getAPI("search_with_title_content", [classID, content || "X", title || "X", 10], setSimilarPost);
     }, [title, content]);
 
     useEffect(() => {
@@ -38,7 +38,7 @@ function DummyClass({ courseName, classID }) {
         event.preventDefault();
         const { value } = search.current;
         if (value.length != 0) {
-            getAPI("search", [value], setPosts);
+            getAPI("search", [classID, value, postsPerPage], setPosts);
         } else {
             getAPI("get_all_posts", [classID, postsPerPage], setPosts);
         }

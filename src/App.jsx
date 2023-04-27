@@ -45,14 +45,14 @@ function App() {
             <Route path="/register" element={<Register />} />
           </Route>
           <Route element={<RequireAuth />}>
-            <Route path="/" element={<NavLayout courseList={courseList} />}>
+            <Route path="/" element={<NavLayout courseList={auth.courseList} />}>
               <Route path="/" element={<HomePage />} />
-              {(!courseList) ?
-                undefined :
-                (courseList.map(courseName =>
-                  <Route key={courseName.id} path={"/" + courseName.class.toLowerCase().replace(/\s/g, '')}>
-                    <Route index element={<DummyClass courseName={courseName.class} classID={courseName.id} />} />
-                    <Route path=":postID" element={<SinglePostPage courseName={courseName.class} />} />
+              {(!auth.courseList) ?
+                null :
+                (auth.courseList.map(courseName =>
+                  <Route key={courseName.course_id} path={"/" + courseName.course_number.toLowerCase().replace(/\s/g, '')}>
+                    <Route index element={<DummyClass courseName={courseName.course_number} classID={courseName.course_id} />} />
+                    <Route path=":postID" element={<SinglePostPage courseName={courseName.course_number} />} />
                   </Route>
                 ))}
             </Route>

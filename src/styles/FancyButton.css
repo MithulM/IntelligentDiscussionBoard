@@ -15,7 +15,6 @@ button {
 
 button.learn-more {
     width: 90%;
-    height: auto;
     border-radius: 75px 75px;
     outline: none;
 }

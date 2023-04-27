@@ -116,7 +116,7 @@ function SinglePostPage() {
                                 </form>
                             </ModalButton>
                             {(post.user_id !== auth.user_id) ?
-                                (undefined) :
+                                (null) :
                                 <ModalButton title="Edit Post" className="ModifyPost edit" isOpen={isEdit} buttonName={<FontAwesomeIcon className="icon reply-icon" icon={faEdit} />} setFunc={setEdit} onConfirm={confirmEdit}>
                                     <form className="edit-form">
                                         <label htmlFor="title">Title</label>
@@ -136,13 +136,14 @@ function SinglePostPage() {
                                             placeholder="Edit your post"
                                             rows="10"
                                             cols="45"
+                                            required
                                             defaultValue={post.post_content}
                                             ref={editContentRef}
                                         ></textarea>
                                     </form>
                                 </ModalButton>}
                             {(post.user_id !== auth.user_id) ?
-                                (undefined) :
+                                (null) :
                                 <ModalButton isOpen={isDelete} title="Delete Post" className="ModifyPost delete" setFunc={setDelete} buttonName={<FontAwesomeIcon className="icon delete-icon" icon={faTrashAlt} />} onConfirm={confirmDelete}>
                                     <p>Are you sure you want to delete this post?</p>
                                 </ModalButton>}
