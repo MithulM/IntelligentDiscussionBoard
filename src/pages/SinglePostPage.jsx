@@ -152,7 +152,7 @@ function SinglePostPage() {
                 </div>
                 <div className="comment-container">
                     {comments && <span className="section-title">Replies:</span>}
-                    <Comment postID={postID} setComments={setComments} depth={0} comments={[...comments].reverse()} />
+                    <Comment postID={postID} postUser={post} setComments={setComments} depth={0} comments={[...comments].reverse()} />
                 </div>
             </div>
         </div>

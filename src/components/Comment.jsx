@@ -8,7 +8,7 @@ import { faReply, faEdit, faTrashAlt, faArrowUp, faArrowDown } from "@fortawesom
 import "../styles/Comment.css"
 import axios from 'axios'
 
-function Comment({ postID, comments, depth, setComments }) {
+function Comment({ postID, comments, depth, setComments, postUser }) {
 
     const [isDelete, setDelete] = useState(false);
     const [isReply, setReply] = useState(false);
@@ -110,7 +110,9 @@ function Comment({ postID, comments, depth, setComments }) {
                                     <h2 className="post-title">{comment.title}</h2>
                                     <div className="post-info">
                                         <span className="post-author">{comment.user.username}&nbsp;</span>
-                                        <span>&bull;&nbsp;</span>
+                                        <span>&nbsp;</span>
+                                        {(comment.user.username === "ai_bot") ? (<span><span className="user-tag">bot</span><span>&nbsp;</span></span>) : null}
+                                        {(comment.user.user_id === postUser) ? (<span><span className="user-tag">bot</span><span>&nbsp;</span></span>) : null}
                                         <span className="post-date">{getTimeAgoString(comment.time_created)}</span>
                                     </div>
                                 </div>

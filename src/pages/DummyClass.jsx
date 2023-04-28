@@ -128,7 +128,7 @@ function DummyClass({ courseName, classID }) {
                                     <textarea
                                         id="content"
                                         ref={quickHelpContent}
-                                        style={{ width: "100%", height: "200px" }}
+                                        style={{ width: "300px", height: "200px" }}
                                     />
                                 </form>)}
                         </Modal>
