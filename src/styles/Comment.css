@@ -66,10 +66,22 @@
     color: #e0dada
 }
 
+.upvoted,
 .upvote:hover>* {
     color: var(--UTDOrange)
 }
 
+.downvoted,
+.delete-icon,
+.downvote:hover>* {
+  color: #CC0000
+}
+
 .refresh-icon {
     color: #00CC00;
+}
+
+.votenumber {
+    font-weight: 800;
+    text-align: center;
 }

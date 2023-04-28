@@ -13,8 +13,6 @@ function HomePage() {
   const [recentPosts, setRecentPosts] = useState([]);
   const [recPosts, setRecPosts] = useState([]);
 
-  const profID = 1;
-
   let data = [];
   let topics = [
     {
@@ -32,11 +30,12 @@ function HomePage() {
   ];
 
   if (auth.role !== "professor") {
-    topics.push({
+    topics.splice(1, 0, {
       topic: "Professor",
       var: profPosts,
     });
   }
+
   for (let i = 0; i < topics.length; i++) {
     data.push({
       topic: topics[i].topic,
@@ -59,7 +58,7 @@ function HomePage() {
   }, []);
 
   useEffect(() => {
-    getAPI("get_professor_posts", [profID], setProfPosts);
+    getAPI("get_student_professor_posts", [auth.user_id], setProfPosts);
   }, []);
 
   return (

@@ -142,11 +142,10 @@ function SinglePostPage() {
                                         ></textarea>
                                     </form>
                                 </ModalButton>}
-                            {(post.user_id !== auth.user_id) ?
-                                (null) :
-                                <ModalButton isOpen={isDelete} title="Delete Post" className="ModifyPost delete" setFunc={setDelete} buttonName={<FontAwesomeIcon className="icon delete-icon" icon={faTrashAlt} />} onConfirm={confirmDelete}>
+                            {(post.user_id === auth.user_id || auth.role === "professor") ?
+                                (<ModalButton isOpen={isDelete} title="Delete Post" className="ModifyPost delete" setFunc={setDelete} buttonName={<FontAwesomeIcon className="icon delete-icon" icon={faTrashAlt} />} onConfirm={confirmDelete}>
                                     <p>Are you sure you want to delete this post?</p>
-                                </ModalButton>}
+                                </ModalButton>) : (null)}
                             <button onClick={refresh}><FontAwesomeIcon clssName="icon refresh-icon" icon={faArrowsRotate} /></button>
                         </div>
                     </div>

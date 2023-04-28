@@ -85,10 +85,10 @@ const Register = () => {
                         required
                         ref={passwordMatchRef}
                     />
-                    <div>
+                    {/* <div>
                         <input type="checkbox" ref={profRef} />
                         <span> Are you a professor?</span>
-                    </div>
+                    </div> */}
                     <Link to="/signin">Already registered?</Link>
                     <button type="submit">Register</button>
                 </form>

@@ -6,6 +6,7 @@ import useAuth from "../hooks/useAuth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faReply, faEdit, faTrashAlt, faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import "../styles/Comment.css"
+import axios from 'axios'
 
 function Comment({ postID, comments, depth, setComments }) {
 
@@ -34,7 +35,6 @@ function Comment({ postID, comments, depth, setComments }) {
         });
         console.log(response);
         const updatedComments = await getAPI("get_answers_for_post", [postID], setComments);
-        setComments(updatedComments);
     }
 
     const confirmEdit = async (answer_id) => {
@@ -52,7 +52,6 @@ function Comment({ postID, comments, depth, setComments }) {
         setEditContent(comment.answer_content);
         setEdit(true);
         const updatedComments = await getAPI("get_answers_for_post", [postID], setComments);
-        setComments(updatedComments);
     }
 
     const confirmDelete = async (answer_id) => {
@@ -64,9 +63,37 @@ function Comment({ postID, comments, depth, setComments }) {
         });
         const updatedComments = await getAPI("get_answers_for_post", [postID], setComments);
     }
+
+    const upvote = async (answer_id) => {
+        const response = await postAPI("upvote", {
+            answer_id: answer_id
+        }, {
+            headers: {
+                "Content-Type": 'application/json',
+                "Authorization": `Bearer ${auth.accessToken}`
+            },
+            withCredentials: true,
+        });
+        const updatedComments = await getAPI("get_answers_for_post", [postID], setComments);
+    }
+
+    const downvote = async (answer_id) => {
+        const response = await postAPI("downvote", {
+            answer_id: answer_id
+        }, {
+            headers: {
+                "Content-Type": 'application/json',
+                "Authorization": `Bearer ${auth.accessToken}`
+            },
+            withCredentials: true,
+        });
+        const updatedComments = await getAPI("get_answers_for_post", [postID], setComments);
+    }
+
     return (
         <div className="childComments">
             {comments.map((comment) => {
+                const voted = null;
                 const items = [];
 
                 // Loop to generate n items
@@ -83,6 +110,7 @@ function Comment({ postID, comments, depth, setComments }) {
                                     <h2 className="post-title">{comment.title}</h2>
                                     <div className="post-info">
                                         <span className="post-author">{comment.user.username}&nbsp;</span>
+                                        <span>&bull;&nbsp;</span>
                                         <span className="post-date">{getTimeAgoString(comment.time_created)}</span>
                                     </div>
                                 </div>
@@ -90,13 +118,13 @@ function Comment({ postID, comments, depth, setComments }) {
                                     <p>{comment.answer_content}</p>
                                 </div>
                                 <div className="modify">
-                                    <button className="vote-icon upvote">
+                                    <button className="vote-icon upvote" onClick={(e) => upvote(comment.answer_id)}>
                                         <FontAwesomeIcon icon={faArrowUp} />
                                     </button>
                                     <span className="vote-icon">
-                                        <span className="upvote-number">{comment.vote_count}</span>
+                                        <span className="votenumber">{comment.vote_count}</span>
                                     </span>
-                                    <button className="vote-icon downvote">
+                                    <button className="vote-icon downvote" onClick={(e) => downvote(comment.answer_id)}>
                                         <FontAwesomeIcon icon={faArrowDown} />
                                     </button>
                                     <ModalButton title="Reply" className="ModifyPost" isOpen={isReply} buttonName={<FontAwesomeIcon icon={faReply} />} setFunc={setReply} onConfirm={(e) => confirmReply(comment.answer_id)}>
@@ -130,11 +158,10 @@ function Comment({ postID, comments, depth, setComments }) {
                                                 ></textarea>
                                             </form>
                                         </ModalButton>}
-                                    {(comment.user.user_id !== auth.user_id) ?
-                                        (null) :
-                                        <ModalButton isOpen={isDelete} title="Delete Reply" className="ModifyPost delete" setFunc={setDelete} buttonName={<FontAwesomeIcon className="icon delete-icon" icon={faTrashAlt} />} onConfirm={(e) => confirmDelete(comment.answer_id)}>
+                                    {(comment.user.user_id === auth.user_id || auth.role === "professor") ?
+                                        (<ModalButton isOpen={isDelete} title="Delete Reply" className="ModifyPost delete" setFunc={setDelete} buttonName={<FontAwesomeIcon className="icon delete-icon" icon={faTrashAlt} />} onConfirm={(e) => confirmDelete(comment.answer_id)}>
                                             <p>Are you sure you want to delete this reply?</p>
-                                        </ModalButton>}
+                                        </ModalButton>) : (null)}
                                 </div>
                             </div>
                         </div>

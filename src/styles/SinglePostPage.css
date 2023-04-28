@@ -154,11 +154,6 @@
   padding-right: 5px
 }
 
-.delete-icon,
-.downvote:hover>* {
-  color: #CC0000
-}
-
 .refresh-icon {
   color: #00CC00;
 }

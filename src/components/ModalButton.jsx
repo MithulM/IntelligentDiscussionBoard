@@ -1,10 +1,12 @@
 import Modal from "./Modal";
 
-function ModalButton({ title, className, isOpen, children, setFunc, buttonName, onConfirm }) {
+function ModalButton({ title, className, isOpen, children, setFunc, buttonName, onConfirm, disableDefault }) {
 
     const closeOnConfirm = () => {
         onConfirm();
-        setFunc(false)
+        if (!disableDefault) {
+            setFunc(false);
+        }
     }
     return (
         <>
