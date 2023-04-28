@@ -11,8 +11,7 @@
 .buttons {
   display: flex;
   flex-direction: column;
-  flex: 1;
-  align-items: flex-start;
+  justify-content: flex-start;
   width: 100%;
   outline: none;
   height: 100%;

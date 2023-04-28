@@ -20,16 +20,16 @@ function NavLayout({ courseList }) {
   return (
     <div className="container">
       <div className="menu">
-        <div className="buttons">
-          <div className="coursesButton">
+        <ul className="buttons">
+          <li className="coursesButton">
             <FancyButton
               to="/"
               menuTab="Home"
               onClick={() => navigate("/")}
             />
-          </div>
+          </li>
           {courseList.map((courseName) => (
-            <div key={courseName.course_id} className="coursesButton">
+            <li key={courseName.course_id} className="coursesButton">
               <FancyButton
                 to={"/" + courseName.course_number.toLowerCase().replace(/\s/g, "")}
                 menuTab={courseName.course_number}
@@ -37,9 +37,9 @@ function NavLayout({ courseList }) {
                   navigate("/" + courseName.course_number.toLowerCase().replace(/\s/g, ""))
                 }
               />
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
         <button className="signout" onClick={signout}>
           <span className="icon"><FontAwesomeIcon icon={faSignOutAlt} /></span>
           <span className="button-text">Sign Out</span>

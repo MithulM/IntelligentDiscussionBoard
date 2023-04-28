@@ -85,7 +85,17 @@ function DummyClass({ courseName, classID }) {
         <React.Fragment>
             <div className="classPage">
                 <div className="search">
-                    <ModalButton title="Create Post" className="classCreatePostBtn" isOpen={isCreate} buttonName="Create post" setFunc={setCreate} onConfirm={createPost}>
+                    <ModalButton title="Quick Help" className="searchButton" isOpen={isHelpOpen} buttonName="Quick Help" setFunc={setHelpOpen} onConfirm={handleQuickHelpSubmit}>
+                        <form>
+                            <label htmlFor="content">Content:</label>
+                            <textarea
+                                id="content"
+                                ref={quickHelpContent}
+                                style={{ width: "100%", height: "200px" }}
+                            />
+                        </form>
+                    </ModalButton>
+                    <ModalButton title="Create Post" className="searchButton" isOpen={isCreate} buttonName="Create post" setFunc={setCreate} onConfirm={createPost}>
                         <div className="create-post-container">
                             <form className="createPostForm">
                                 <label htmlFor="title">Title:</label>
@@ -117,18 +127,6 @@ function DummyClass({ courseName, classID }) {
                 <div className="postsList">
                     <ClassPosts title={courseName} postList={[...posts].reverse()} />
                 </div>
-            </div>
-            <div>
-                <ModalButton title="Quick Help" className="quickhelpbtn" isOpen={isHelpOpen} buttonName="Quick Help" setFunc={setHelpOpen} onConfirm={handleQuickHelpSubmit}>
-                    <form>
-                        <label htmlFor="content">Content:</label>
-                        <textarea
-                            id="content"
-                            ref={quickHelpContent}
-                            style={{ width: "100%", height: "200px" }}
-                        />
-                    </form>
-                </ModalButton>
             </div>
         </React.Fragment>
     );
